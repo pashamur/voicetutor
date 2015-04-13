@@ -1,0 +1,29 @@
+.homepage-title {
+	margin-top: 0px;
+	margin-bottom: 25px;
+}
+
+.started-heading{
+	text-align: center;
+	margin: 10px;
+}
+
+h2 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.exercise {
+	height: 300px;
+}
+
+.exercises-title {
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 0;
+}
+
+.exercise-row h3 {
+	margin-top: 33%;
+	text-align: center;
+}
