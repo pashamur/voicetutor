@@ -4,6 +4,7 @@
 <head>
 
 <link rel="stylesheet" href="../vendor/bootstrap3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="index.css">
 <script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
 <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
 
@@ -38,19 +39,30 @@
 </nav>
 
 <div class="container">
-  <div class="jumbotron">
-    <h1> Singing Simply </h1>
-    <p> Singing simply is a voice training tool that uses progressively more challenging exercises and songs to improve the pitch and rhythm of your singing.</p>
+  <div class='row'>
+    <div class="jumbotron" style='overflow: hidden;'>
+      <div class='col-xs-6'>
+        <iframe width="420" height="315" src="https://www.youtube.com/embed/Q5hS7eukUbQ" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class='col-xs-6'>  
+        <h1 class='homepage-title'> Singing Simply </h1>
+        <p class='description' style='font-size: 18px; line-height: 28px;'> Singing simply is a voice training tool that uses progressively more challenging exercises and songs to improve the pitch and rhythm of your singing. The exercises section contains exercises to train your musical ear (e.g. pitch, rhythm and interval recognition) and exercises to help improve your singing quality (e.g. singing a pitch/ interval/rhythm). The songs section gives you real-time feedback about your pitch when you sing along to one of the many available songs.</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="container">
+  <div class="row" style='margin-bottom: 50px;'>
+    <h1 style='text-align:center'>Get started with:</h1>
+  </div>
+  
   <div class="row">
-    <div class="col-xs-6">
-      First column      
+    <div class="col-xs-6 started-container">
+      <h2 class='started-heading'>Exercises</h2>
     </div>
-    <div class="col-xs-6">
-      Second column
+    <div class="col-xs-6 started-container">
+      <h2 class='started-heading'>Songs</h2>    
     </div>
   </div>
 </div>
