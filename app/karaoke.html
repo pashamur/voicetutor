@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<link rel="stylesheet" href="../vendor/bootstrap3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/index.css">
+<script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
+<script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+$(function(){
+  $("#navigation").load('partials/navbar.html')
+  $("#search-button").click(function(){
+    $("#search-results").show();
+  })
+});
+</script>
+
+</head>
+
+<body>
+
+<nav id="navigation" class="navbar navbar-default"></nav>
+
+</body>
+
+</html>

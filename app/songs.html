@@ -11,6 +11,9 @@
 <script>
 $(function(){
   $("#navigation").load('partials/navbar.html')
+  $("#search-button").click(function(){
+    $("#search-results").show();
+  })
 });
 </script>
 
@@ -37,11 +40,13 @@ $(function(){
       <div class="input-group" style="padding-left: 20px; padding-right: 20px;">
         <input type="text" class="form-control" placeholder="Name of the songs, singers, bands...">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          <button id='search-button' class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
         </span>
       </div><!-- /input-group -->
-      <div>
-          <!-- search results -->
+      <div id='search-results' class='list-group' style='display: none;'>
+        <a href="karaoke.html" class="list-group-item">Justin Bieber - Baby</a>
+        <a href="karaoke.html" class="list-group-item">Hozier - Take Me To Church</a>
+        <!-- search results -->
       </div>
     </div>
     <div class='col-xs-3'>
