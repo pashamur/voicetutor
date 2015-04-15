@@ -8,6 +8,132 @@
 <script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
 <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
 
+<script>
+$(function(){
+  $("#navigation").load('partials/navbar.html')
+
+
+
+
+$("#movingArrow").delay(3000).animate({
+  left: "+=20%"
+}).delay(100).animate({
+  left: "-=10%"
+}).delay(100).animate({
+  left: "+=3%"
+})
+
+});
+
+//Literal copy-pasta from the top answer at:
+//http://stackoverflow.com/questions/26532328/how-do-i-get-audio-data-from-my-microphone-using-audiocontext-html5
+// 
+//Looks like someone else did it here: https://github.com/cwilso/PitchDetect/tree/master/js
+//there are papers proving the stack overflow thing don't work lol
+
+// var audioContext = new AudioContext();
+
+// console.log("audio is starting up ...");
+
+// var BUFF_SIZE = 16384;
+
+// var audioInput = null,
+//     microphone_stream = null,
+//     gain_node = null,
+//     script_processor_node = null,
+//     script_processor_fft_node = null,
+//     analyserNode = null;
+
+// if (!navigator.getUserMedia)
+//         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+//                       navigator.mozGetUserMedia || navigator.msGetUserMedia; //for all them browsers out there
+
+// if (navigator.getUserMedia){
+
+//     navigator.getUserMedia({audio:true}, 
+//       function(stream) {
+//           start_microphone(stream);
+//       },
+//       function(e) {
+//         alert('Error capturing audio.');
+//       }
+//     );
+// } else { alert('getUserMedia not supported in this browser.'); };
+
+// function show_some_data(given_typed_array, num_row_to_display, label) {
+
+//     var size_buffer = given_typed_array.length;
+//     var index = 0;
+//     var max_index = num_row_to_display;
+
+//     console.log("__________ " + label);
+
+//     for (; index < max_index && index < size_buffer; index += 1) {
+
+//         console.log(given_typed_array[index]);
+//     }
+// }
+
+// function process_microphone_buffer(event) {  // PCM audio data in time domain
+
+//     var i, N, inp, microphone_output_buffer;
+
+//     microphone_output_buffer = event.inputBuffer.getChannelData(0); // just mono - 1 channel for now
+
+//     //show_some_data(microphone_output_buffer, 5, "from getChannelData");
+// }
+
+// function start_microphone(stream){
+
+//   console.log("the microphone started");
+//   gain_node = audioContext.createGain();
+//   gain_node.connect( audioContext.destination );
+
+//   microphone_stream = audioContext.createMediaStreamSource(stream);
+//   //microphone_stream.connect(gain_node); // comment out to disconnect output speakers
+//                                         // ... everything else will work OK this
+//                                         // eliminates possibility of feedback squealing
+//                                         // or leave it in and turn down the volume
+
+//   script_processor_node = audioContext.createScriptProcessor(BUFF_SIZE, 1, 1);
+//   script_processor_node.onaudioprocess = process_microphone_buffer; // callback
+
+//   microphone_stream.connect(script_processor_node); 
+
+//   // --- setup FFT
+
+//   script_processor_fft_node = audioContext.createScriptProcessor(2048, 1, 1);
+//   script_processor_fft_node.connect(gain_node);
+
+//   analyserNode = audioContext.createAnalyser();
+//   analyserNode.smoothingTimeConstant = 0;
+//   analyserNode.fftSize = 2048;
+
+//   microphone_stream.connect(analyserNode);
+
+//   analyserNode.connect(script_processor_fft_node);
+
+//   script_processor_fft_node.onaudioprocess = function() { // FFT in frequency domain
+
+//     // get the average for the first channel
+//     var fft_array = new Uint8Array(analyserNode.frequencyBinCount);
+//     analyserNode.getByteFrequencyData(fft_array);
+
+//     // draw the spectrogram
+//     if (microphone_stream.playbackState == microphone_stream.PLAYING_STATE) {
+
+//         $("#movingArrow").css('left',fft_array[0])
+//         show_some_data(fft_array, 5, "from fft");
+
+
+//     }
+//   }
+// }
+
+
+
+ </script>
+
 </head>
 
 <body>
@@ -21,14 +147,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Singing Simply</a>
+      <a class="navbar-brand" href="#">Singing Simply</a>
     </div>
-
     <ul class="nav navbar-nav">
-      <li><a href="start.html">Getting started</a></li>
-      <li class='active'><a href="exercises.html">Exercises</a></li>
-      <li><a href="songs.html">Songs</a></li>
-      <li><a href="progress.html">My Progress</a></li>
+              <li class="active"><a href="#">Exercises</a></li>
+              <li><a href="#">Songs</a></li>
+              <li><a href="#">Progress</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -54,15 +178,26 @@
     <h3 style ='text-align:center'> Please listen to and sing the note provided by the computer </h2>
   </div>
 
-  <div class="row" style="background-image: url('images/abcdefg.png'); background-repeat: no-repeat; height: 200px; width: 600px; margin-left:auto; margin-right: auto"> </div>
 
-  <div style="float:right;">
-  		Time:
+  <div class="row" style="background-image: url('images/abcdefg.png'); background-repeat: no-repeat; height: 55px; width: 600px; margin-left:auto; margin-right: auto"> </div>
+  <div id="movingArrow" style="background-image: url('images/lilarrow.png'); background-repeat: no-repeat;  position: absolute; z-index: : 101; width:48px; height:48px; top=500; float:left; left:34%"> </div>
+  
+
+
+  <div id = "time" style="float:right; margin-top: 50px">
+      Time:
   </div>
 
-  <div>
-  		Score:
-  </div>
+  <div id ="score" style="margin-top:50px">
+      Score:
+   </div>
+
+
+
+  <audio autoplay = "autoplay"> <!-- put the value  autoplay = "autoplay" to play the sound.-->
+    <source src="sounds/D293.mp3" type="audio/mpeg">
+  </audio>
+
 
 </div>
 
