@@ -208,7 +208,90 @@
     </div>
 
     <div class="progress_section" id="songs_section">
-      <h1>Songs</h1>
+      <h1 id="songs_title">Songs</h1>
+      <div id="progress_search" class="input-group" style="padding-left: 20px; padding-right: 20px;">
+        <input id='search-text' type="text" class="form-control" placeholder="Name of the songs, singers, bands...">
+        <span class="input-group-btn">
+          <button id='search-button' class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </span>
+      </div><!-- /input-group -->
+      <div id='search-results' class='list-group' style='display: none;'>
+        <!-- search results -->
+      </div>
+    
+      <div class="btn-group">
+        <button id="sort_button" type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Sort <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#">Date Recorded</a></li>
+          <li><a href="#">Song Name</a></li>
+          <li><a href="#">Artist Name</a></li>
+        </ul>
+      </div>
+
+      <div id="songs_list_container">
+        <div id="song_list_labels">
+          <span>Song Name</span>
+          <span>Artist</span>
+          <span>Date</span>
+          <span>Score</span>
+        </div>
+        <ul id="songs_list">
+          <li>
+            <span>Shake It Off</span>
+            <span>Taylor Swift</span>
+            <span>2015-04-15</span>
+            <span>69</span>
+          </li>
+          <li>
+            <span>Baby</span>
+            <span>Justin Bieber</span>
+            <span>2015-04-14</span>
+            <span>98</span>
+          </li>
+          <li>
+            <span>Friday</span>
+            <span>Rebecca Black</span>
+            <span>2015-04-10</span>
+            <span>3</span>
+          </li>
+          <li>
+            <span>Bohemian Rhapsody</span>
+            <span>Queen</span>
+            <span>2015-03-09</span>
+            <span>53</span>
+          </li>
+          <li>
+            <span>Valentine's Day</span>
+            <span>Linkin Park</span>
+            <span>2015-02-14</span>
+            <span>80</span>
+          </li>
+          <li>
+            <span>Engineer's Drinking Song</span>
+            <span>MIT Chorallaries</span>
+            <span>2015-02-13</span>
+            <span>87</span>
+          </li>
+          <li>
+            <span>Turn Down For What</span>
+            <span>DJ Snake & Lil Jon</span>
+            <span>2015-01-10</span>
+            <span>67</span>
+          </li>
+          <li>
+            <span>F.U.N. Song</span>
+            <span>Spongebob</span>
+            <span>2015-01-08</span>
+            <span>72</span>
+          </li>
+          <li>
+            <span>Blank Space</span>
+            <span>Taylor Swift</span>
+            <span>2015-01-02</span>
+            <span>73</span>
+          </li>
+        </ul>
+      </div>
     </div>
 
   </body>
