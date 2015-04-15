@@ -1,0 +1,17 @@
+.karaoke-type-upcoming {
+    color: #999999;
+}
+.karaoke-type-ready {
+    color: #058359;
+}
+.karaoke-type-instrumental {
+    color: #065BC4;
+}
+.karaoke-display {
+    padding: 0 0 10px 0;
+}
+.karaoke-overlay {
+    color: #FF0000;
+    font-weight: normal;
+    text-decoration: underline;
+}
