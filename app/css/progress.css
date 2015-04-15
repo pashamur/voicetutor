@@ -1,5 +1,5 @@
 .progress_section {
-    margin: 20px;
+    margin: 30px;
     padding: 20px;
     background-color: #f8f8f8;
     border-left: 10px solid #C5F7F0;
@@ -60,4 +60,27 @@
     margin: auto;
     width: 100px;
     text-align:center;
+}
+
+.progress_section{
+    position:relative;
+}
+
+#miq_chart{
+    margin: 60px 100px 40px 20px;
+}
+
+#miq {
+    font-size: 20pt;
+    margin: 0;
+    color: #8E8CA3;
+    background-color: #C5F7F0;
+    color: white;
+    text-shadow: #444 0.1em 0.1em 0.3em;
+    padding: 5px 15px;
+    display: inline-block;
+    position:absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #A9C2C9;
 }

@@ -5,9 +5,13 @@
     <link rel="stylesheet" href="../vendor/bootstrap3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/songs.css">
+    <link rel="stylesheet" href="../vendor/c3js/c3.min.css">
     <link rel="stylesheet" href="css/progress.css">
     <script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
     <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
+    <script src="../vendor/c3js/d3.min.js"></script>
+    <script src="../vendor/c3js/c3.min.js"></script>
+    <script src="js/progress.js"></script>
   </head>
 
   <body>
@@ -45,6 +49,19 @@
     </nav>
     <!-- end navbar -->
 
+    <div class="progress_section" id="exercises_section">
+      <h1>Progress</h1>
+      <div id="miq">
+        <span id="miq_label">Musical IQ: </span>
+        <span id="miq_value"></span>
+      </div>
+      <div id="miq_chart">
+      </div>
+      <div id="ex_scores">
+        
+      </div>
+      
+    </div>
     
     <div class="progress_section" id="achievements_section">
       <h1>Achievements</h1>
@@ -159,14 +176,10 @@
 
     </div>
 
-    <div class="progress_section" id="exercises_section">
-      <h1>Progress</h1>
-    </div>
-
     <div class="progress_section" id="songs_section">
       <h1>Songs</h1>
     </div>
 
-</body>
+  </body>
 </html>
 
