@@ -1,0 +1,63 @@
+.progress_section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-left: 10px solid #C5F7F0;
+}
+
+.progress_section h1 {
+    font-size: 20pt;
+    margin: 0;
+    color: #8E8CA3;
+}
+
+.achievement {
+    margin: 20px;
+    width: 100px;
+    display: inline-block;
+}
+
+.icon {
+    background-size: 80px 80px;
+    background-repeat:no-repeat;
+    height: 80px;
+    width: 80px;
+    margin: 10px auto;
+    line-height: 80px;
+    font-size: 20pt;
+    color: white;
+    text-shadow: #000 0.1em 0.1em 0.2em;
+    text-align: center;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.icon:hover{
+    color: #C5F7F0;
+    font-size: 30pt;
+}
+
+.achievement_icon_1 {
+    background-image: url("../images/progress_icon_1.png");
+}
+
+.achievement_icon_2 {
+    background-image: url("../images/progress_icon_2.png");
+}
+
+.achievement_icon_3 {
+    background-image: url("../images/progress_icon_3.png");
+}
+
+.achievement_icon_4 {
+    background-image: url("../images/progress_icon_4.png");
+}
+
+.achievement_icon_5 {
+    background-image: url("../images/progress_icon_5.png");
+}
+
+.achievement_label {
+    margin: auto;
+    width: 100px;
+    text-align:center;
+}
