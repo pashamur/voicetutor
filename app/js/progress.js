@@ -72,7 +72,22 @@ $(function(){
         $('#miq_value').html(miq[miq.length-1]);
     }
 
-
+    function setupBars() {
+        // generate random scores
+        var scores = [];
+        for (var i=0; i<4; i++) {
+            scores.push(Math.round(Math.random()* (100 - 10) + 10));
+        }
+        
+        var width = $('.score_bar_container').width();
+        // update display
+        for (var i=0; i<4; i++) {
+            $('#score_bar_'+(i+1)).html(scores[i] + "%");
+            $('#score_bar_'+(i+1)).animate({width: Math.round(scores[i]*width/100)+"px"}, 1000);
+        }
+    }
+    
     // run setup stuff
     setupMIQ();
+    setupBars();
 });
