@@ -10,7 +10,12 @@
 
 <script>
 $(function(){
-  $("#navigation").load('partials/navbar.html')
+  $("#navigation").load('partials/navbar.html');
+  $("#search-text").keypress(function(e){
+    if(e.keyCode == 13){
+      $("#search-button").click();
+    }
+  });
   $("#search-button").click(function(){
     $("#search-results").show();
   })
@@ -38,7 +43,7 @@ $(function(){
     <div class='col-xs-6'>
       <h2 class="text-center">Songs Search</h2>
       <div class="input-group" style="padding-left: 20px; padding-right: 20px;">
-        <input type="text" class="form-control" placeholder="Name of the songs, singers, bands...">
+        <input id='search-text' type="text" class="form-control" placeholder="Name of the songs, singers, bands...">
         <span class="input-group-btn">
           <button id='search-button' class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
         </span>
