@@ -4,7 +4,7 @@
     padding: 20px;
     background-color: #f8f8f8;
     border-left: 10px solid #C5F7F0;
-    
+    position: relative;
 }
 
 .progress_section h1 {
@@ -12,6 +12,8 @@
     margin: 0;
     color: #8E8CA3;
 }
+
+/* start progress achievements section */
 
 .achievement {
     margin: 20px;
@@ -64,9 +66,9 @@
     text-align:center;
 }
 
-.progress_section{
-    position:relative;
-}
+/* end progress achievements section */
+
+/* start progress statistics section */
 
 #miq_chart{
     margin: 60px 100px 60px 20px;
@@ -149,6 +151,10 @@
     vertical-align: top;
 }
 
+/* end progress statistics section */
+
+/* start progress songs section css */
+
 #progress_search{
     display:inline-block;
     width: calc(100% - 160px);
@@ -214,3 +220,105 @@
     width:24%;
     text-align:center;
 }
+
+/* end progress song section css */
+
+
+/* start modal css */
+
+.audiojs{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.play-pause{
+    width: 35px !important;
+}
+
+.scrubber{
+    width: calc(100% - 170px) !important;
+}
+
+.modal-dialog {
+    width: 90% !important;
+}
+#song_chart{
+    width: 90%;
+    margin: 40px auto;
+}
+
+#song_line{
+    height: 358px;
+    width: 2px;
+    position:absolute;
+    background-color: black;
+    top: 45px;
+    display: none;
+}
+
+em{
+    font-style: normal;
+    font-weight: bold;
+    color: #A9C2C9;
+}
+
+.green{
+    color: #8AE876;
+}
+
+.red{
+    color: #FA808C;
+}
+
+#song_results h1, .modal-title{
+    font-size: 20pt;
+    margin: 0 10px 10px 10px;
+    color: #8E8CA3;
+}
+
+#comments_list{
+    font-size: 14pt;
+    list-style-type: square;
+}
+
+#comments_section{
+    float:left;
+    margin-left: 40px;
+    vertical-align: top;
+}
+
+#buttons_section a:hover{
+    text-decoration: none;
+}
+
+#buttons_section{
+    float: right;
+    vertical-align: top;
+    padding: 20px;
+    margin-right: 50px;
+}
+
+#buttons_section button{
+    display:block;
+    width: 200px;
+    height: 50px;
+    background-color: #C5F7F0;
+    border-radius: 2px;
+    color: #72577C;
+    font-size: 15pt;
+    outline: 0;
+    border: 0;
+    margin: 15px;
+    transition:background-color 0.3s ease;
+}
+
+#buttons_section button:hover{
+    background-color: #B1DED8;
+}
+
+#comments_container{
+    height: 180px;
+}
+
+/* end modal css */

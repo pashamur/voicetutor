@@ -11,6 +11,7 @@
     <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
     <script src="../vendor/c3js/d3.min.js"></script>
     <script src="../vendor/c3js/c3.min.js"></script>
+    <script src="../vendor/audiojs/audio.min.js"></script>
     <script src="js/progress.js"></script>
   </head>
 
@@ -39,8 +40,6 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Joe Schmoe <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">View Profile</a></li>
-              <li class="divider"></li>
               <li><a href="#">Sign out</a></li>
             </ul>
           </li>
@@ -218,7 +217,7 @@
       <div id='search-results' class='list-group' style='display: none;'>
         <!-- search results -->
       </div>
-    
+      
       <div class="btn-group">
         <button id="sort_button" type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Sort <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right">
@@ -293,6 +292,43 @@
         </ul>
       </div>
     </div>
+
+    <div id="song_modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Song Results</h4>
+          </div>
+          <div class="modal-body">
+            <div id="song_results">
+              <div id="song_line"></div>
+              <div id="song_audio"><audio src="sounds/shake_it_off.mp3" preload="auto" /></div>
+              <div id="song_chart"></div>
+              <div id="comments_container">
+                <div id="comments_section">
+                  <h1>Comments</h1>
+                  <ul id="comments_list">
+                    <li>Your average pitch accuracy was <em class="red">69%</em>.</li>
+                    <li>Throughout the song, you had a tendency to be <em class="red">sharp</em>.</li>
+                    <li>Your average rhythm accuracy was <em class="green">87%</em>.</li>
+                    <li>Throughout the song, you sang the notes <em class="green">on time</em>.</li>
+                  </ul>
+                </div>
+                <div id="buttons_section">
+                  <a href="karaoke.html"><button>Retry this song</button></a>
+                  <a href="songs.html"><button>Sing more songs</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </body>
 </html>
