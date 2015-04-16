@@ -13,17 +13,67 @@ $(function(){
   $("#navigation").load('partials/navbar.html')
 
 
+    var dialog = document.getElementById('window');
+    // document.getElementById('retry').onclick = function() {
+    //     dialog.close();
+    // };
+    // document.getElementById('exercises').onclick = function() {
+    //     dialog.close();
+    // };
 
 
-$("#movingArrow").delay(3000).animate({
-  left: "+=20%"
-}).delay(100).animate({
-  left: "-=10%"
-}).delay(100).animate({
-  left: "+=3%"
-})
+
+//http://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text("Time: " + minutes + ":" + seconds);
+
+        if (timer > 1) {
+            --timer;
+            //timer = duration;
+        } else {
+          dialog.show()
+        }
+    }, 1000);
+}
+
+function animateSequence() {
+
+  $("#movingArrow").delay(3000).animate({
+    left: "+=20%"
+  }).delay(100).animate({
+    left: "-=10%"
+  }).delay(100).animate({
+    left: "+=3%"
+  }).delay(1000);
+  $("note").attr("src","sounds/A440.mp3").trigger("play");
+
+
+}
+
+jQuery(function ($) {
+    var duration = 10,
+        display = $('#time');
+    startTimer(duration, display);
+    animateSequence();
 
 });
+
+
+
+
+});
+
+
+
+
 
 //Literal copy-pasta from the top answer at:
 //http://stackoverflow.com/questions/26532328/how-do-i-get-audio-data-from-my-microphone-using-audiocontext-html5
@@ -193,8 +243,20 @@ $("#movingArrow").delay(3000).animate({
    </div>
 
 
+<dialog id="window">
+    <h3>Hello World!</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, inventore!</p>
 
-  <audio autoplay = "autoplay"> <!-- put the value  autoplay = "autoplay" to play the sound.-->
+
+    <a href="exerciseSingingAPitch.html"><p> Retry </p> </a>
+    <a href="exercises.html"><p> Back to Exercises </p> </a>
+    <!--<button id="exercises">Back to Exercises</button> -->
+</dialog>
+
+
+
+
+  <audio id="note" autoplay = "autoplay"> <!-- put the value  autoplay = "autoplay" to play the sound.-->
     <source src="sounds/D293.mp3" type="audio/mpeg">
   </audio>
 
