@@ -31,3 +31,38 @@ h2 {
 	margin-top: 33%;
 	text-align: center;
 }
+
+.getting-started h1 {
+	width: 800px;
+}
+
+.getting-started .intro{
+	width: 800px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	font-size: 110%;
+	line-height: 180%;
+}
+
+.question {
+	margin-top: 50px;
+	margin-bottom: 10px;
+	width: 800px;
+	line-height: 180%;
+	font-size: 110%;
+}
+
+.question-title {
+	font-weight: bold;
+	font-size: 140%;
+	margin-bottom: 20px;
+}
+
+.answer-part {
+	margin-top: 30px;
+}
+
+.sources {
+	margin-top: 100px;
+	font-size: 12px;
+}
