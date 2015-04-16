@@ -1,4 +1,6 @@
 $(function(){    
+    var interval;
+    var isSongSetup = false;
     // taken from http://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates
     Date.prototype.addDays = function(days) {
         var dat = new Date(this.valueOf())
@@ -87,7 +89,85 @@ $(function(){
         }
     }
     
+    function setupSong() {
+        // setup audio files using audiojs
+        audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+        });
+
+
+        // seutp song results chart using c3js
+        var data = [];
+        currentValue = Math.round(Math.random()*(75 - 25) + 25);
+        for (var i=0; i<=100; i++) {
+            data.push(currentValue);
+            var rand = Math.random();
+            if (rand>0.75){
+                currentValue += Math.round(Math.random()*5)*5;
+            } else if (rand < 0.25) {
+                currentValue = Math.max(0, currentValue-Math.round(Math.random()*5)*5);
+            }
+        }
+        
+        var chart = c3.generate({
+            bindto: '#song_chart',
+            data: {
+                columns: [
+                    ['data1'].concat(data)
+                    //['data2', 130, 100, 140, 200, 150, 50]
+                ],
+                types: {
+                    data1: 'step',
+                }
+            }, 
+            axis:{
+                x: {
+                    tick: {
+                        count: 5
+                    }
+                }
+            },
+            color: {
+                pattern: ['#8E8CA3']
+            },
+            legend: {
+                position: 'inset'
+            },
+            interaction: {
+                enabled: false
+            },
+            size: {
+                width:$('.scrubber').width() + 50
+            }
+        });
+    }
+
     // run setup stuff
     setupMIQ();
     setupBars();
+
+    $('#songs_list > li').on('click', function() {
+        $('#song_modal').modal('show');
+    });
+
+    $('#song_modal').on('shown.bs.modal', function (e) {
+        if (!isSongSetup) {
+            setupSong();
+            isSongSetup = true;
+        }
+    });
+    
+    $('body').on('click','.play', function() {
+        interval = setInterval(function(){
+            var progressWidth = $('.progress').width();
+            var offset = $('.progress').offset().left - $('.modal-body').offset().left;
+            $("#song_line").css("left", (progressWidth+offset)+"px");
+            $("#song_line").show();
+        }, 100);
+        
+    });
+
+    $('body').on('click', '.pause', function() {
+        clearInterval(interval);
+    });
 });
