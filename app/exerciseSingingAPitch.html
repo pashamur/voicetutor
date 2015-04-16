@@ -64,17 +64,28 @@ function animateSequence() {
     left: "-=8%"
   }).delay(100).animate({
     left: "-=9.5%"
+  }).delay(4250).animate({
+    left: "+=9.5%"
+  }).delay(300).animate({
+    left: "-=8%"
+  }).delay(100).animate({
+    left: "+=12%"
   });
   
+
 
   //controls the sound
   setTimeout( function(){
       $("#note").attr("src","sounds/B3.mp3").trigger("play");
-    },5500);
+    },6000);
+  setTimeout( function(){
+      $("#note").attr("src","sounds/F4.mp3").trigger("play");
+    },11000);
+
 
 
   //lights up the letters!
-  var letters = ['D', 'B']
+  var letters = ['D', 'B', 'F'] //unused
  setTimeout( function(){
      $("#letterD").css("color","#90EE90");
       setTimeout( function(){
@@ -116,6 +127,28 @@ setTimeout(function() {
    },50)
    },4800); 
 },4500);
+
+setTimeout(function() {
+  setTimeout( function() {
+     $("#letterF").css("color","#90EE90");
+      setTimeout( function(){
+     $("#letterF").css("color","black");
+      setTimeout( function(){
+     $("#letterF").css("color","#90EE90");
+      setTimeout( function(){
+     $("#letterF").css("color","black");
+      setTimeout( function(){
+     $("#letterF").css("color","#90EE90");
+      setTimeout( function(){
+     $("#letterF").css("color","black");
+
+   },500)
+   },50)
+   },50)
+   },50)
+   },50)
+   },4800); 
+},9500);
 }
 
 
@@ -123,7 +156,7 @@ setTimeout(function() {
 
 
 jQuery(function ($) {
-    var duration = 10,
+    var duration = 15,
         display = $('#time');
     startTimer(duration, display);
     animateSequence();
@@ -134,13 +167,13 @@ jQuery(function ($) {
 
     function setupBars() {
         // generate random scores
-        var scores = 50;
+        var scores = 67;
         
         var width = $('.score_bar_container').width();
         // update display
 
-            $('#score_bar_1').html("50%");
-            $('#score_bar_1').animate({width: Math.round(50 * 900 / 100)+"px"}, 1000); //scores*width/100 this should be what I'm using
+            $('#score_bar_1').html("67%");
+            $('#score_bar_1').animate({width: Math.round(67 * 900 / 100)+"px"}, 1000); //scores*width/100 this should be what I'm using
     }
     
     // run setup stuff
@@ -338,11 +371,20 @@ jQuery(function ($) {
     <div class="score_bar_container">
       <div id="score_bar_1" class="score_bar"></div>
     </div>
-
-    <div id="buttons_section">
+    <div id="comments_container">
+                <div id="comments_section">
+                  <h1>Comments</h1>
+                  <ul id="comments_list">
+                    <li>Notes you got correct: D, F</li>
+                    <li>Notes you got incorrect: B</li>
+                  </ul>
+                </div>
+                <div id="buttons_section">
                   <a href="exerciseSingingAPitch.html"><button>Retry this exercise</button></a>
                   <a href="exercises.html"><button>Back to Exercises</button></a>
-    </div>
+                </div>
+              </div>
+    
 </dialog>
 
 

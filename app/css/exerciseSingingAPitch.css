@@ -58,3 +58,14 @@
 #buttons_section button:hover{
     background-color: #B1DED8;
 }
+
+#comments_list{
+    font-size: 14pt;
+    list-style-type: square;
+}
+
+#comments_section{
+    float:left;
+    margin-left: 40px;
+    vertical-align: top;
+}
