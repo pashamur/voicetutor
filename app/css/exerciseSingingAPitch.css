@@ -1,0 +1,71 @@
+
+.pitchLetter{
+    font-size: 30pt;
+    color: black;
+
+}
+
+.score_bar_container{
+    height: 32px;
+    margin: 15px 20px 28px 20px;
+    border: 1px solid #562155;
+}
+
+.score_bar{
+    width: 0;
+    height: 30px;
+    text-align: center;
+    color: white;
+    text-shadow: #000 0em 0em 0.6em;
+    line-height: 28px;
+    font-size: 15pt;
+}
+
+#score_bar_1{
+    background-color: #A9C2C9;
+}
+
+#window{
+    width: 1000px;
+
+}
+
+#buttons_section a:hover{
+    text-decoration: none;
+}
+
+#buttons_section{
+    float: right;
+    vertical-align: top;
+    padding: 20px;
+    margin-right: 50px;
+}
+
+#buttons_section button{
+    display:block;
+    width: 200px;
+    height: 50px;
+    background-color: #C5F7F0;
+    border-radius: 2px;
+    color: #72577C;
+    font-size: 15pt;
+    outline: 0;
+    border: 0;
+    margin: 15px;
+    transition:background-color 0.3s ease;
+}
+
+#buttons_section button:hover{
+    background-color: #B1DED8;
+}
+
+#comments_list{
+    font-size: 14pt;
+    list-style-type: square;
+}
+
+#comments_section{
+    float:left;
+    margin-left: 40px;
+    vertical-align: top;
+}
