@@ -159,8 +159,8 @@ $(function(){
     
     $('body').on('click','.play', function() {
         interval = setInterval(function(){
-            var progressWidth = $('.progress').width();
-            var offset = $('.progress').offset().left - $('.modal-body').offset().left;
+            var progressWidth = $('.scrubber .progress').width();
+            var offset = $('.scrubber .progress').offset().left - $('.modal-body').offset().left;
             $("#song_line").css("left", (progressWidth+offset)+"px");
             $("#song_line").show();
         }, 100);
