@@ -15,3 +15,73 @@
     font-weight: normal;
     text-decoration: underline;
 }
+
+.song-info {
+	text-align: right;
+}
+
+.progress {
+    height: 50px;
+    font-size: 30px;
+}
+.bar {
+    font-size: 30px;
+    line-height: 50px;
+}
+
+.icon {
+	display: block;
+	padding: 5px 8px;
+	background: #e6effa;
+	border: 1px solid #bdd0e8;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#loading-dialog{
+	padding:20px;
+	border:3px solid #CCCCCC;
+}
+
+#player{
+	padding:20px;
+	border:3px solid #CCCCCC;
+}
+
+#karaoke-display{
+	font-size:200%;
+	text-align:center;
+}
+
+#controls{}
+
+#buttons{
+	float:left;
+}
+
+#status{
+	float:right;
+	padding:6px 0 0 0;
+}
+
+#scrubber-container{
+	padding:7px 100px 0 60px;
+}
+
+.icon:hover {
+	background: #f4f8fd;
+}
+
+.record-icon:before {
+	content: url(images/buttons/record.png);
+	display: block;
+	float: left;
+	margin-right: 5px;
+	position: relative;
+	bottom: 2px;
+}
+
+.stop-icon {
+	background-image: url("images/buttons/stop.png");
+}

@@ -14,8 +14,7 @@
 <script type="text/javascript" src="3rdparty/ricekaraoke.js"></script>
 <script type="text/javascript" src="3rdparty/simplekaraokedisplay.js"></script>
 <link rel="stylesheet" type="text/css" href="3rdparty/jquery-ui.custom.css"/>
-<link rel="stylesheet" type="text/css" href="demo.css"/>
-<link rel="stylesheet" type="text/css" href="karaoke.css"/>
+<link rel="stylesheet" type="text/css" href="css/karaoke.css"/>
 
 <script>
 $(function(){
@@ -33,33 +32,60 @@ $(function(){
 <nav id="navigation" class="navbar navbar-default"></nav>
 
 <div class="container">
-	<p>
-	    <strong>Please wait for the song to buffer at the beginning.</strong>
-	</p>
-
-	<div id="loading-dialog">
-		<noscript>
-		    <p>You need JavaScript.</p>
-		</noscript>
-	    <p id="loading-message">
-	    </p>
+	<div class="row">
+		<div class="col-xs-1">Score</div>
+		<div class="col-xs-4">
+			<div class="progress">
+	  			<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+	  			<span id="score">0%</span>
+	  			</div>
+	  		</div>
+  		</div>
+  		<div class="col-xs-4"></div>
+  		<div class="col-xs-3">
+  			<p class="song-info">What is Love<br>Haddaway</p>
+  		</div>
 	</div>
-	<div id="player" style="display: none">
-		<div id="karaoke-wrapper">
-		    <div id="karaoke-display"></div>
+
+	<!-- Real time feedback -->
+	<div class="row">
+			
+	</div>
+
+	<div class="row">
+		<div id="loading-dialog">
+			<noscript>
+			    <p>You need JavaScript.</p>
+			</noscript>
+		    <p id="loading-message">
+		    </p>
 		</div>
-		
-		<div id="controls">
-		    <div id="buttons">
-		        <button id="play-button"><img src="images/buttons/play.png" alt="Play" /></button>
-		    </div>
-	        <div id="status">
-	           ---
-	        </div>
-	        <div id="scrubber-container">
-		       <div id="scrubber"></div>
-	        </div>
+		<div id="player" style="display: none">
+			<div id="karaoke-wrapper">
+			    <div id="karaoke-display"></div>
+			</div>
+			
+			<div id="controls">
+			    <div id="buttons">
+			    	<button id="play-button" type="button" class="btn btn-default btn-md" aria-label="Left Align">
+	  					<span id="play-button-icon" class="glyphicon glyphicon-record" aria-hidden="true"></span>&nbsp;Click to start recording!
+					</button>
+					<!--
+			        <button id="play-button">
+			        	<span id="control-button" class="icon record-icon"></span>
+			       	</button>
+			       -->
+			    </div>
+		        <div id="status">
+		           ---
+		        </div>
+		        <div id="scrubber-container" style="visibility: hidden">
+			       <div id="scrubber"></div>
+		        </div>
+			</div>
 		</div>
+	</div>
+	<div class="row">
 	</div>
 </div>
 
@@ -77,6 +103,15 @@ var player = null;
 var scrubber = null;
 var lastPosition = 0;
 
+function updateScoreBar() {
+	var score = Math.floor((Math.random() * 20) + 60);
+	var up = Math.floor((Math.random() * 6) + 1);
+	if (up == 1) {
+		$('.progress-bar').css('width', score+'%').attr('aria-valuenow', score);
+		$('#score').html(score + "%");
+	}
+}
+
 function getTimeString(t) {
     var min = Math.floor(t / 60);
     var secs = Math.floor(t % 60);
@@ -93,15 +128,22 @@ function changePosition(percent) {
 
 function updateControls() {
     if (isScrubbing) {
-        $('#play-button').attr('disabled', 'disabled');
+        $('#play-button-icon').attr('disabled', 'disabled');
     } else {
-        $('#play-button').removeAttr('disabled');
+        $('#play-button-icon').removeAttr('disabled');
     }
 
     if (player.paused) {
-        $('#play-button').html('<img src="images/buttons/play.png" alt="Play" />');
+    	//$('#play-button-icon').toggleClass("glyphicon-stop");
+    	//$('#play-button-icon').toggleClass("glyphicon-record");
+    	$('#play-button').html('<span id="play-button-icon" class="glyphicon glyphicon-record" aria-hidden="true"></span>&nbsp;Click to start recording');
+        //$('.button-icon').html('<img src="images/buttons/record.png" alt="Play" />');
     } else {
-        $('#play-button').html('<img src="images/buttons/pause.png" alt="Pause" />');
+    	//$('#play-button-icon').toggleClass("glyphicon-stop");
+    	//$('#play-button-icon').toggleClass("glyphicon-record");
+    	
+        $('#play-button').html('<span id="play-button-icon" class="glyphicon glyphicon-pause" aria-hidden="true"></span>&nbsp;Click to pause');
+        //$('#button-icon').html('<img src="images/buttons/pause.png" alt="Pause" />');
     }
 
     updateStatus();
@@ -119,7 +161,6 @@ function setup() {
     $('#play-button').click(function(e) {
         player.togglePause();
     });
-
     updateControls();
 }
 
@@ -159,7 +200,7 @@ function init() {
         url: musicPath,
         volume: 100,
         stream: true,
-        autoPlay: true,
+        autoPlay: false,
         onload: function(success) {
             if (this.readyState == 2) {
                 alert('Failed to play the music file!');
@@ -193,8 +234,11 @@ function init() {
             show.render(this.position / 1000, isScrubbing);
             updateStatus();
             lastPosition = this.position;
+
+            updateScoreBar();
         }
     });
+	player.paused = true;
 
     setup();
 }
