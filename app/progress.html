@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../vendor/c3js/c3.min.css">
     <link rel="stylesheet" href="css/progress.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica' rel='stylesheet' type='text/css'>
+
     <script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
     <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
     <script src="../vendor/c3js/d3.min.js"></script>
@@ -34,7 +36,7 @@
           <li><a href="start.html">Getting started</a></li>
           <li><a href="exercises.html">Exercises</a></li>
           <li><a href="songs.html">Songs</a></li>
-          <li><a href="progress.html">My Progress</a></li>
+          <li class='active'><a href="progress.html">My Progress</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -48,249 +50,250 @@
       </div><!-- /.navbar-collapse -->
     </nav>
     <!-- end navbar -->
+    <div class='container'>
+      <div class="progress_section" id="exercises_section">
+        <h1>Statistics</h1>
+        <div id="miq">
+          <span id="miq_label">Musical IQ: </span>
+          <span id="miq_value"></span>
+        </div>
+        <div id="miq_chart">
+        </div>
+        
+        <h1>Average Exercise Scores</h1>
 
-    <div class="progress_section" id="exercises_section">
-      <h1>Statistics</h1>
-      <div id="miq">
-        <span id="miq_label">Musical IQ: </span>
-        <span id="miq_value"></span>
-      </div>
-      <div id="miq_chart">
+        <div id="ex_scores">
+          <div id="score_labels">
+            <div class="score_label">
+              Recognizing Intervals
+            </div>
+            <div class="score_label">
+              Recognizing Rhythms
+            </div>
+            <div class="score_label">
+              Singing Pitches
+            </div>
+            <div class="score_label">
+              Singing Intervals
+            </div>
+          </div>
+          
+          <div id="score_bars">
+            <div class="score_bar_container">
+              <div id="score_bar_1" class="score_bar"></div>
+            </div>
+            <div class="score_bar_container">
+              <div id="score_bar_2" class="score_bar"></div>
+            </div>
+            <div class="score_bar_container">
+              <div id="score_bar_3" class="score_bar"></div>
+            </div>
+            <div class="score_bar_container">
+              <div id="score_bar_4" class="score_bar"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
       
-      <h1>Average Exercise Scores</h1>
+      <div class="progress_section" id="achievements_section">
+        <h1>Achievements</h1>
 
-      <div id="ex_scores">
-        <div id="score_labels">
-          <div class="score_label">
-            Recognizing Intervals
+        <div class="achievement">
+          <div class="icon achievement_icon_3">
           </div>
-          <div class="score_label">
-            Recognizing Rhythms
+          <div class="achievement_label">
+            Completed Profile
           </div>
-          <div class="score_label">
-            Singing Pitches
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_1">
+            5
           </div>
-          <div class="score_label">
-            Singing Intervals
+          <div class="achievement_label">
+            Completed Exercises
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_5">
+            5
+          </div>
+          <div class="achievement_label">
+            Rhythm Exercises
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_1">
+            10
+          </div>
+          <div class="achievement_label">
+            Completed Exercises
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_2">
+            5
+          </div>
+          <div class="achievement_label">
+            Excellent Exercises
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_2">
+            10
+          </div>
+          <div class="achievement_label">
+            Excellent Exercises
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_5">
+            10
+          </div>
+          <div class="achievement_label">
+            Rhythm Exercises
           </div>
         </div>
         
-        <div id="score_bars">
-          <div class="score_bar_container">
-            <div id="score_bar_1" class="score_bar"></div>
+        <div class="achievement">
+          <div class="icon achievement_icon_1">
+            50
           </div>
-          <div class="score_bar_container">
-            <div id="score_bar_2" class="score_bar"></div>
-          </div>
-          <div class="score_bar_container">
-            <div id="score_bar_3" class="score_bar"></div>
-          </div>
-          <div class="score_bar_container">
-            <div id="score_bar_4" class="score_bar"></div>
+          <div class="achievement_label">
+            Completed Exercises
           </div>
         </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_4">
+            5
+          </div>
+          <div class="achievement_label">
+            Completed Songs
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_4">
+            10
+          </div>
+          <div class="achievement_label">
+            Completed Songs
+          </div>
+        </div>
+
+        <div class="achievement">
+          <div class="icon achievement_icon_2">
+            5
+          </div>
+          <div class="achievement_label">
+            Excellent Songs
+          </div>
+        </div>
+
+
+        <div class="achievement">
+          <div class="icon achievement_icon_4">
+            50
+          </div>
+          <div class="achievement_label">
+            Completed Songs
+          </div>
+        </div>
+
       </div>
 
-    </div>
-    
-    <div class="progress_section" id="achievements_section">
-      <h1>Achievements</h1>
+      <div class="progress_section" id="songs_section">
+        <h1 id="songs_title">Songs</h1>
+        <div id="progress_search" class="input-group" style="padding-left: 20px; padding-right: 20px;">
+          <input id='search-text' type="text" class="form-control" placeholder="Name of the songs, singers, bands...">
+          <span class="input-group-btn">
+            <button id='search-button' class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
+        </div><!-- /input-group -->
+        <div id='search-results' class='list-group' style='display: none;'>
+          <!-- search results -->
+        </div>
+        
+        <div class="btn-group">
+          <button id="sort_button" type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Sort <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Date Recorded</a></li>
+            <li><a href="#">Song Name</a></li>
+            <li><a href="#">Artist Name</a></li>
+          </ul>
+        </div>
 
-      <div class="achievement">
-        <div class="icon achievement_icon_3">
+        <div id="songs_list_container">
+          <div id="song_list_labels">
+            <span>Song Name</span>
+            <span>Artist</span>
+            <span>Date</span>
+            <span>Score</span>
+          </div>
+          <ul id="songs_list">
+            <li>
+              <span>Shake It Off</span>
+              <span>Taylor Swift</span>
+              <span>2015-04-15</span>
+              <span>69</span>
+            </li>
+            <li>
+              <span>Baby</span>
+              <span>Justin Bieber</span>
+              <span>2015-04-14</span>
+              <span>98</span>
+            </li>
+            <li>
+              <span>Friday</span>
+              <span>Rebecca Black</span>
+              <span>2015-04-10</span>
+              <span>3</span>
+            </li>
+            <li>
+              <span>Bohemian Rhapsody</span>
+              <span>Queen</span>
+              <span>2015-03-09</span>
+              <span>53</span>
+            </li>
+            <li>
+              <span>Valentine's Day</span>
+              <span>Linkin Park</span>
+              <span>2015-02-14</span>
+              <span>80</span>
+            </li>
+            <li>
+              <span>Engineer's Drinking Song</span>
+              <span>MIT Chorallaries</span>
+              <span>2015-02-13</span>
+              <span>87</span>
+            </li>
+            <li>
+              <span>Turn Down For What</span>
+              <span>DJ Snake & Lil Jon</span>
+              <span>2015-01-10</span>
+              <span>67</span>
+            </li>
+            <li>
+              <span>F.U.N. Song</span>
+              <span>Spongebob</span>
+              <span>2015-01-08</span>
+              <span>72</span>
+            </li>
+            <li>
+              <span>Blank Space</span>
+              <span>Taylor Swift</span>
+              <span>2015-01-02</span>
+              <span>73</span>
+            </li>
+          </ul>
         </div>
-        <div class="achievement_label">
-          Completed Profile
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_1">
-          5
-        </div>
-        <div class="achievement_label">
-          Completed Exercises
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_5">
-          5
-        </div>
-        <div class="achievement_label">
-          Rhythm Exercises
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_1">
-          10
-        </div>
-        <div class="achievement_label">
-          Completed Exercises
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_2">
-          5
-        </div>
-        <div class="achievement_label">
-          Excellent Exercises
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_2">
-          10
-        </div>
-        <div class="achievement_label">
-          Excellent Exercises
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_5">
-          10
-        </div>
-        <div class="achievement_label">
-          Rhythm Exercises
-        </div>
-      </div>
-      
-      <div class="achievement">
-        <div class="icon achievement_icon_1">
-          50
-        </div>
-        <div class="achievement_label">
-          Completed Exercises
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_4">
-          5
-        </div>
-        <div class="achievement_label">
-          Completed Songs
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_4">
-          10
-        </div>
-        <div class="achievement_label">
-          Completed Songs
-        </div>
-      </div>
-
-      <div class="achievement">
-        <div class="icon achievement_icon_2">
-          5
-        </div>
-        <div class="achievement_label">
-          Excellent Songs
-        </div>
-      </div>
-
-
-      <div class="achievement">
-        <div class="icon achievement_icon_4">
-          50
-        </div>
-        <div class="achievement_label">
-          Completed Songs
-        </div>
-      </div>
-
-    </div>
-
-    <div class="progress_section" id="songs_section">
-      <h1 id="songs_title">Songs</h1>
-      <div id="progress_search" class="input-group" style="padding-left: 20px; padding-right: 20px;">
-        <input id='search-text' type="text" class="form-control" placeholder="Name of the songs, singers, bands...">
-        <span class="input-group-btn">
-          <button id='search-button' class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        </span>
-      </div><!-- /input-group -->
-      <div id='search-results' class='list-group' style='display: none;'>
-        <!-- search results -->
-      </div>
-      
-      <div class="btn-group">
-        <button id="sort_button" type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">Sort <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Date Recorded</a></li>
-          <li><a href="#">Song Name</a></li>
-          <li><a href="#">Artist Name</a></li>
-        </ul>
-      </div>
-
-      <div id="songs_list_container">
-        <div id="song_list_labels">
-          <span>Song Name</span>
-          <span>Artist</span>
-          <span>Date</span>
-          <span>Score</span>
-        </div>
-        <ul id="songs_list">
-          <li>
-            <span>Shake It Off</span>
-            <span>Taylor Swift</span>
-            <span>2015-04-15</span>
-            <span>69</span>
-          </li>
-          <li>
-            <span>Baby</span>
-            <span>Justin Bieber</span>
-            <span>2015-04-14</span>
-            <span>98</span>
-          </li>
-          <li>
-            <span>Friday</span>
-            <span>Rebecca Black</span>
-            <span>2015-04-10</span>
-            <span>3</span>
-          </li>
-          <li>
-            <span>Bohemian Rhapsody</span>
-            <span>Queen</span>
-            <span>2015-03-09</span>
-            <span>53</span>
-          </li>
-          <li>
-            <span>Valentine's Day</span>
-            <span>Linkin Park</span>
-            <span>2015-02-14</span>
-            <span>80</span>
-          </li>
-          <li>
-            <span>Engineer's Drinking Song</span>
-            <span>MIT Chorallaries</span>
-            <span>2015-02-13</span>
-            <span>87</span>
-          </li>
-          <li>
-            <span>Turn Down For What</span>
-            <span>DJ Snake & Lil Jon</span>
-            <span>2015-01-10</span>
-            <span>67</span>
-          </li>
-          <li>
-            <span>F.U.N. Song</span>
-            <span>Spongebob</span>
-            <span>2015-01-08</span>
-            <span>72</span>
-          </li>
-          <li>
-            <span>Blank Space</span>
-            <span>Taylor Swift</span>
-            <span>2015-01-02</span>
-            <span>73</span>
-          </li>
-        </ul>
       </div>
     </div>
 

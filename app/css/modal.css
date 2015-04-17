@@ -76,9 +76,9 @@ em{
     display:block;
     width: 200px;
     height: 50px;
-    background-color: #C5F7F0;
+    background-color: #f79382;
     border-radius: 2px;
-    color: #72577C;
+    color: #fff;
     font-size: 15pt;
     outline: 0;
     border: 0;
@@ -87,7 +87,7 @@ em{
 }
 
 #buttons_section button:hover{
-    background-color: #B1DED8;
+    background-color: #f5745e;
 }
 
 #comments_container{

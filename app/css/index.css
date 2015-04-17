@@ -2,6 +2,57 @@ body {
 	background-image: url('../images/greyzz.png');
 }
 
+#navigation {
+	color: #89949B;
+	background-color: #fff;
+}
+
+#navigation li>a {
+	color: #89949B;
+	font-size: 100%;
+}
+
+#navigation li.active>a {
+	color: #F4654D;
+	background-color: #fff;
+}
+
+#navigation a.navbar-brand {
+	background-color: #F4654D;
+	color: #f8f8f8;
+	font-family: 'IM Fell DW Pica', serif;
+	font-size: 28px;
+}
+
+.container {
+	background-color: #fff;
+	border-radius: 4px;
+	padding-top: 10px;
+	padding-bottom: 100px;
+	border: 1px solid #e8e8e8;
+}
+
+#navigation .container { border: none; padding-top: 0; padding-bottom: 0;}
+
+.row .started-heading {
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+
+.well {
+	background-color: #fff;
+}
+
+.jumbotron {
+	background-color: #fff;
+}
+
+.getting-started {
+	background-color: #fff;
+	border-radius: 4px;
+	border: 1px solid #e8e8e8;
+}
+
 .homepage-title {
 	margin-top: 0px;
 	margin-bottom: 25px;
@@ -32,13 +83,18 @@ h2 {
 }
 
 .getting-started h1 {
+	width: 800px;
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .getting-started .intro{
 	width: 800px;
 	margin-top: 30px;
 	margin-bottom: 50px;
+	margin-left: auto;
+	margin-right: auto;
 	font-size: 110%;
 	line-height: 180%;
 }
@@ -46,6 +102,8 @@ h2 {
 .question {
 	margin-top: 50px;
 	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
 	width: 800px;
 	line-height: 180%;
 	font-size: 110%;
@@ -62,6 +120,9 @@ h2 {
 }
 
 .sources {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 100px;
 	font-size: 12px;
 }

@@ -32,12 +32,15 @@
 
 #loading-dialog{
 	padding:20px;
-	border:3px solid #CCCCCC;
+	border:3px solid #e8e8e8;
 }
 
 #player{
 	padding:20px;
-	border:3px solid #CCCCCC;
+	margin-left:15px;
+	margin-right:15px;
+	border:2px solid #e8e8e8;
+	border-radius: 4px;
 }
 
 #karaoke-display{

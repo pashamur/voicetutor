@@ -3,3 +3,12 @@
   	margin-top: 20px;
   	margin-left: 20px;
 }
+
+.songs-container h1 {
+	margin-bottom: 30px;
+}
+
+.songs-container h3 {
+	margin-top: 42px;
+	margin-bottom: 20px;
+}
