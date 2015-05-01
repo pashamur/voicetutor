@@ -16,7 +16,7 @@
 $(function(){
   $("#search-text").keypress(function(e){
     if(e.keyCode == 13){
-      $("#search-button").click();
+      $("#search-results").show();
     }
   });
   $("#search-button").click(function(){
@@ -26,6 +26,10 @@ $(function(){
 
   var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
+      if(q==''){
+        return cb(['Haddaway - What is Love', 'Taylor Swift - Fifteen', 'Hozier - Take Me To Church']);
+      }
+
       var matches, substringRegex;
    
       // an array that will be populated with substring matches
@@ -51,7 +55,7 @@ $(function(){
   $('#search-text').typeahead({
     hint: true,
     highlight: true,
-    minLength: 1
+    minLength: 0
   },
   {
     name: 'states',
@@ -104,9 +108,6 @@ $(function(){
       <h1 class="text-center">Select a song</h1>
       <div class="input-group" style="padding-left: 20px; padding-right: 20px;">
         <input id='search-text' type="text" class="typeahead form-control" placeholder="Name of the songs, singers, bands...">
-        <span class="input-group-btn">
-          <button id='search-button' class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        </span>
       </div><!-- /input-group -->
       <div id='search-results' class='list-group' style='display: none;'>
         <a href="karaoke.html" class="list-group-item">Haddaway - What is love <div style='float:right;'>04:31</div></a>
