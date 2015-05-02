@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<link rel="stylesheet" href="../vendor/bootstrap3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/exerciseSingingAPitch.css">
+<link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica' rel='stylesheet' type='text/css'>
+
+<script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
+<script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+$(function(){
+  $("#navigation").load('partials/navbar.html')
+
+
+    var dialog = document.getElementById('window');
+    // document.getElementById('retry').onclick = function() {
+    //     dialog.close();
+    // };
+    // document.getElementById('exercises').onclick = function() {
+    //     dialog.close();
+    // };
+
+
+
+//http://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text("Time: " + minutes + ":" + seconds);
+
+        if (timer > 1) {
+            --timer;
+            //timer = duration;
+        } else {
+          dialog.show()
+          $("#note").attr("src","").trigger("play");
+        }
+    }, 1000);
+}
+
+
+
+
+jQuery(function ($) {
+    var duration = 15,
+        display = $('#time');
+    startTimer(duration, display);
+    //animateSequence();
+
+});
+
+
+
+    function setupBars() {
+        // generate random scores
+        var scores = 67;
+        
+        var width = $('.score_bar_container').width();
+        // update display
+
+            $('#score_bar_1').html("67%");
+            $('#score_bar_1').animate({width: Math.round(67 * 900 / 100)+"px"}, 1000); //scores*width/100 this should be what I'm using
+    }
+    
+    // run setup stuff
+    setupBars();
+
+});
+
+
+
+ </script>
+
+</head>
+
+<body>
+
+<nav id="navigation" class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Singing Simply</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="start.html">Getting started</a></li>
+      <li class='active'><a href="exercises.html">Exercises</a></li>
+      <li><a href="songs.html">Songs</a></li>
+      <li><a href="progress.html">My Progress</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Joe Schmoe <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Sign out</a></li>
+        </ul>
+      </li>
+    </ul>
+    </div><!-- /.navbar-collapse -->
+  </div>
+</nav>
+
+
+
+<div class="container">
+
+  <div class="row" style='margin-bottom: 30px;'>
+    <h1 style='text-align:center'> Choose the Interval </h1>
+    <h3 style ='text-align:center'> Please listen to the two notes provided by the computer. </h3>
+    <h3 style ='text-align:center'> You have five seconds to choose the correct interval being played.</h3>
+  </div>
+
+
+  <!-- <div class="row" style="background-image: url('images/abcdefg.png'); background-repeat: no-repeat; height: 55px; width: 600px; margin-left:auto; margin-right: auto"> </div> -->
+  
+  <table id="pitches" style="width: 600px; height: 55px; margin-left:auto; margin-right: auto"> 
+    <tr>
+      <td id="letterA" class="pitchLetter"> Unison </td>
+      <td id="letterB" class="pitchLetter"> Second </td>
+      <td id="letterC" class="pitchLetter"> Third </td>
+      <td id="letterD" class="pitchLetter"> Fourth </td>
+    </tr>
+    <tr>
+      <td id="letterE" class="pitchLetter"> Fifth </td>
+      <td id="letterF" class="pitchLetter"> Sixth </td>
+      <td id="letterG" class="pitchLetter"> Seventh </td>
+    </tr>
+  </table>  
+
+
+  <div id = "time" style="float:right; margin-top: 50px">
+      Time:
+  </div>
+
+
+
+
+<dialog id="window">
+    <h3>Exercise Complete!</h3>
+
+    <div class="score_bar_container">
+      <div id="score_bar_1" class="score_bar"></div>
+    </div>
+    <div id="comments_container">
+                <div id="comments_section">
+                  <h1>Comments</h1>
+                  <ul id="comments_list">
+                    <li>Notes you got correct: D, F</li>
+                    <li>Notes you got incorrect: B</li>
+                  </ul>
+                </div>
+                <div id="buttons_section">
+                  <a href="exerciseSingingAPitch.html"><button>Retry this exercise</button></a>
+                  <a href="exercises.html"><button>Back to Exercises</button></a>
+                </div>
+              </div>
+    
+</dialog>
+
+
+
+
+  <audio id="note" autoplay = "autoplay"> <!-- put the value  autoplay = "autoplay" to play the sound.-->
+    <source src="sounds/D293.mp3" type="audio/mpeg">
+  </audio>
+
+
+</div>
+
+
+
+
+</body>
+
+</html>
