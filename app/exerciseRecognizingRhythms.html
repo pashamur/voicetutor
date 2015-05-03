@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<link rel="stylesheet" href="../vendor/bootstrap3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/exerciseSingingAPitch.css">
+<link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica' rel='stylesheet' type='text/css'>
+
+<script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
+<script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+
+var rhythmPlaying = "";
+var arraySpot = 0; //I use arraySpot to figure out how far in the game the user is. 
+var points = 0;
+soundOrder = ["sounds/rhythms/aaba.mp3", "sounds/rhythms/abab.mp3","sounds/rhythms/aaaa.mp3","sounds/rhythms/aaab.mp3","sounds/rhythms/abaa.mp3"];
+playOrder = ["aaba", "abab", "aaaa", "aaab", "abaa"]
+//playOrder = ["first", "third", "second", "first", "second"]
+
+var hasFailed = false; //whether or not they get an interval right on the first guess
+var justSucceeded = false; //if they just clicked correctly we know to clean the board after
+thingsRight = playOrder;
+thingsWrong = [];
+
+
+$(function(){
+  $("#navigation").load('partials/navbar.html')
+
+
+    var dialog = document.getElementById('window');
+
+//this is shitty lol sorry
+var table = document.getElementById("intervals");
+table.rows(0).cells(0).onClick = function() {
+  if ((arraySpot = 0) || (arraySpot = 3)){ //THEY GUESSED CORRECTLY!!
+    points++;
+  }
+  playNextSound()
+  //redo the tables
+}
+table.rows(0).cells(1).onClick = function() {
+  if ((arraySpot = 2) || (arraySpot = 4)){ //THEY GUESSED CORRECTLY!!
+    points++;
+  }
+  playNextSound()
+  //redo the tables
+}
+table.rows(1).cells(0).onClick = function() {
+  if (arraySpot = 1){ //THEY GUESSED CORRECTLY!!
+    points++;
+  }
+  playNextSound()
+  //redo the tables
+}
+table.rows(1).cells(1).onClick = function() {
+
+  playNextSound()
+  //redo the tables
+}
+
+
+//this is a terrible 4:30am idea. please forgive me. 
+function tableShuffle(){
+  if (arraySpot = 1) {
+
+  } else if (arraySpot == 2) {
+
+  } else if (arraySpot == 3) {
+
+  } else if (arraySpot == 4) {
+
+  } 
+
+}
+
+//probably not going to do onclick the same way I did the first guy
+//setting up the onClick listeners
+var table = document.getElementById("intervals");
+ for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++)
+        table.rows[i].cells[j].onclick = function () {
+            rhythmGame(this);
+        };
+    }
+
+playNextSound();
+
+function rhythmGame(cell) {
+  if(justSucceeded)
+    whitenCells()
+
+
+  if (intervalPlaying == cell.innerHTML) { //they guessed correctly
+
+    justSucceeded = true;
+    greenAnimate(cell.innerHTML);
+    if (!hasFailed)
+      points++;
+    $("#score").text("Score: " + points + "/5");
+    playNextSound();
+    hasFailed = false;
+
+  } else {  //they guessed incorreclty
+    hasFailed = true;
+    justSucceeded = false;
+    redAnimate(cell.innerHTML);
+
+    index = thingsRight.indexOf(intervalPlaying)//get the interval they were supposed to get
+    thingsRight.splice(index, 1);
+    thingsWrong.push(intervalPlaying)
+  };
+}
+
+
+
+
+
+
+function greenAnimate(cell) {
+  document.getElementById(cell).style.color = "green";
+}
+function redAnimate(cell) {
+  document.getElementById(cell).style.color = "red";
+}
+function whitenCells() {
+  for (var i = 0; i < table.rows.length; i++) {
+    for (var j = 0; j < table.rows[i].cells.length; j++){
+      table.rows[i].cells[j].style.color = "black";
+    }
+  }
+}
+
+//straight from here: http://www.srccodes.com/p/article/40/determine-click-position-row-column-number-onclick-table-cell
+
+
+function playNextSound() {
+    $("#note").attr("src",soundOrder[arraySpot]).trigger("play");
+    intervalPlaying = playOrder[arraySpot]
+    arraySpot++;
+
+  if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
+    $("#gucci").html("Intervals you got correct: " + thingsRight)
+    $("#notgucci").html("Intervals you got incorrect: " + thingsWrong)
+    dialog.show()
+  }
+
+
+}
+/* pseudo-code for how the game works
+Note that I am going to hard code the order of the questions and which cell is the correct answer. I don't want to bother randomizing. 
+play sound
+
+onTableClick{
+  if clickedSquare.name = currentRhythm
+    clickedSquare.color = green
+    score++;
+  else
+    clickedSquare.color = red
+      
+  clickedSquareColor = white;
+  playNextSound();
+}
+*/
+
+
+
+    function setupBars() {        
+        var width = $('.score_bar_container').width();
+        // update display
+        var percent = score / 5 * 100 // where 5 is the max score attainable
+        $('#score_bar_1').html(percent);
+        $('#score_bar_1').animate({width: Math.round(percent*width/100)+"px"}, 1000); //scores*width/100 this should be what I'm using
+            //$('#score_bar_'+(i+1)).animate({width: Math.round(scores[i]*width/100)+"px"}, 1000);
+    }
+    
+    // run setup stuff
+    setupBars();
+
+});
+
+
+
+ </script>
+
+</head>
+
+<body>
+
+<nav id="navigation" class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Singing Simply</a>
+    </div>
+
+    <ul class="nav navbar-nav">
+      <li><a href="start.html">Getting started</a></li>
+      <li class='active'><a href="exercises.html">Exercises</a></li>
+      <li><a href="songs.html">Songs</a></li>
+      <li><a href="progress.html">My Progress</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Joe Schmoe <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Sign out</a></li>
+        </ul>
+      </li>
+    </ul>
+    </div><!-- /.navbar-collapse -->
+  </div>
+</nav>
+
+
+
+<div class="container">
+
+  <div class="row" style='margin-bottom: 30px;'>
+    <h1 style='text-align:center'> Choose the Rhythm </h1>
+    <h3 style ='text-align:center'> Please listen to the beat provided by the computer and select the correct rhythm being played. </h3>
+  </div>
+
+
+  <!-- <div class="row" style="background-image: url('images/abcdefg.png'); background-repeat: no-repeat; height: 55px; width: 600px; margin-left:auto; margin-right: auto"> </div> -->
+  
+  <table id="intervals" border="1" style="border-collapse: collapse; cursor: pointer; margin-left:auto; margin-right: auto" cellpadding="8" > 
+    <tr>
+      <td id="first" class="rhythmButton">
+          <img src="images/rhythms/aaba.png" height="50%">
+      </td>
+      <td id="second" class="rhythmButton">
+          <img src="images/rhythms/aaaa.png" height="50%">
+      </td>
+    </tr>
+    <tr>
+      <td id="third" class="rhythmButton"> 
+          <img src="images/rhythms/abab.png" height="50%">
+      </td>
+      <td id="fourth" class="rhythmButton">
+          <img src="images/rhythms/abaa.png" height="50%">
+      </td>
+    </tr>
+  </table>  
+
+
+   <div id = "score" style="float:right; margin-top: 50px">
+      Score: 0/5
+  </div> 
+
+
+
+
+<dialog id="window">
+    <h3>Exercise Complete!</h3>
+
+    <div class="score_bar_container">
+      <div id="score_bar_1" class="score_bar"></div>
+    </div>
+    <div id="comments_container">
+                <div id="comments_section">
+                  <h1>Comments</h1>
+                  <ul id="comments_list">
+                    <li id="gucci">Rhythms you got correct: </li>
+                    <li id="notgucci">Rhythms you got incorrect: </li>
+                  </ul>
+                </div>
+                <div id="buttons_section">
+                  <a href="exerciseSingingAPitch.html"><button>Retry this exercise</button></a>
+                  <a href="exercises.html"><button>Back to exercises</button></a>
+                </div>
+              </div>
+    
+</dialog>
+
+
+
+
+  <audio id="note" autoplay = "autoplay"> <!-- put the value  autoplay = "autoplay" to play the sound.-->
+    <source src="sounds/D293.mp3" type="audio/mpeg">
+  </audio>
+
+
+</div>
+
+
+
+
+</body>
+
+</html>
