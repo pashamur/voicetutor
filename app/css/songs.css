@@ -1,7 +1,6 @@
 #search-results {
-	width: 515px;
-  	margin-top: 20px;
-  	margin-left: 20px;
+	width: 800px;
+	margin: 20px auto;
 }
 
 .songs-container h1 {
@@ -11,4 +10,53 @@
 .songs-container h3 {
 	margin-top: 42px;
 	margin-bottom: 20px;
+}
+
+div.input-group {
+	margin: 0 auto;
+}
+
+#search-text, .tt-hint, .tt-query {
+	width: 800px;
+	height: 50px;
+	padding: 8px 12px;
+	font-size: 24px;
+	line-height: 30px;
+	border: 2px solid #ccc;
+	-webkit-border-radius: 8px;
+	   -moz-border-radius: 8px;
+	        border-radius: 8px;
+	outline: none;
+}
+
+.tt-menu {
+	width: 800px;
+	margin: 12px 0;
+	padding: 8px 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 8px;
+	   -moz-border-radius: 8px;
+	        border-radius: 8px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	   -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	        box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion{
+	padding: 3px 20px;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.tt-suggestion.tt-cursor {
+	color: #fff;
+	background-color: #0097cf;
+}
+
+.tt-suggestion:hover {
+	cursor: pointer;
+	color: #fff;
+	background-color: #0097cf;
 }
