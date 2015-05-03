@@ -1,6 +1,6 @@
 #search-results {
-  	margin-top: 20px;
-  	margin-left: 20px;
+	width: 800px;
+	margin: 20px auto;
 }
 
 .songs-container h1 {
