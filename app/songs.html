@@ -31,7 +31,7 @@ $(function(){
   var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
       if(q==''){
-        return cb(['What is Love - Haddaway', 'Fifteen - Taylor Swift', 'Take Me To Church - Hozier']);
+        return cb(['What is Love', 'Uptown Funk', 'Take Me To Church']);
       }
 
       var matches, substringRegex;
@@ -56,11 +56,28 @@ $(function(){
    
   Songs = [];
 
+  // Source: http://stackoverflow.com/questions/10191941/jquery-unique-on-an-array-of-strings
+  uniq = function(array){
+      return array.filter(function(el, index, arr) {
+          return index === arr.indexOf(el);
+      });
+  }
+
   $.get('text/songs.txt', function(data) {
     songs = data.split('\n');
+    titles = [];
+    artists = [];
+
     for(i = 0; i<songs.length; i++){
-      Songs.push({id: i, title: songs[i].split(' - ')[0], artist: songs[i].split(' - ')[1]});
+      var title = songs[i].split(' - ')[0];
+      var artist = songs[i].split(' - ')[1];
+
+      Songs.push({id: i, title: title, artist: artist});
+      titles.push(title);
+      artists.push(artist);
     }
+
+    autocomplete_data = titles.concat(uniq(artists));
     setup_typeahead();
   });
 
@@ -73,7 +90,7 @@ $(function(){
     },
     {
       name: 'songs',
-      source: substringMatcher(songs)
+      source: substringMatcher(autocomplete_data)
     });
 
   };
