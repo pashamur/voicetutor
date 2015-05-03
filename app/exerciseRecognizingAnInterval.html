@@ -20,7 +20,8 @@ soundOrder = ["sounds/fifth.mp3", "sounds/third.mp3","sounds/seventh.mp3","sound
 playOrder = ["Fifth", "Third", "Seventh", "Second", "Sixth"]
 var hasFailed = false; //whether or not they get an interval right on the first guess
 var justSucceeded = false; //if they just clicked correctly we know to clean the board after
-
+thingsRight = ["Fifth", "Third", "Seventh", "Second", "Sixth"];
+thingsWrong = [];
 
 
 $(function(){
@@ -42,7 +43,8 @@ playNextSound();
 function intervalGame(cell) {
   if(justSucceeded)
     whitenCells()
-  if (intervalPlaying == cell.innerHTML) {
+  if (intervalPlaying == cell.innerHTML) { //they guessed correctly
+
     justSucceeded = true;
     greenAnimate(cell.innerHTML);
     if (!hasFailed)
@@ -50,10 +52,15 @@ function intervalGame(cell) {
     $("#score").text("Score: " + points + "/5");
     playNextSound();
     hasFailed = false;
-  } else {
+
+  } else {  //they guessed incorreclty
     hasFailed = true;
     justSucceeded = false;
     redAnimate(cell.innerHTML);
+
+    index = thingsRight.indexOf(intervalPlaying)//get the interval they were supposed to get
+    thingsRight.splice(index, 1);
+    thingsWrong.push(intervalPlaying)
   };
 }
 
@@ -80,6 +87,8 @@ function playNextSound() {
     arraySpot++;
 
   if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
+    $("#gucci").html("Intervals you got correct: " + thingsRight)
+    $("#notgucci").html("Intervals you got incorrect: " + thingsWrong)
     dialog.show()
   }
 
@@ -200,8 +209,8 @@ onTableClick{
                 <div id="comments_section">
                   <h1>Comments</h1>
                   <ul id="comments_list">
-                    <li>Notes you got correct: D, F</li>
-                    <li>Notes you got incorrect: B</li>
+                    <li id="gucci">Intervals you got correct: </li>
+                    <li id="notgucci">Intervals you got incorrect: </li>
                   </ul>
                 </div>
                 <div id="buttons_section">
