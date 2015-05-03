@@ -143,7 +143,7 @@ $(function(){
                 canvasPlay();
                 isRecording = true;
             } else {   
-                // Add double check window
+                canvasPause();
                 $('#song_modal').modal('show');
                 $('#play-button').html('<span id="play-button-icon" class="glyphicon glyphicon-stop" aria-hidden="true"></span>&nbsp;Start recording');
             }
@@ -303,15 +303,16 @@ $(function(){
         return TOP_PAD + (TOTAL_PITCH - pitch) * HPP;
     }
 
-    // animates canvas per 10ms
+    // animates canvas per FEEDBACK_MS
     function canvasUpdates() {
-        console.log("updating " + currentTime);
         context.clearRect(0, 0, width, height);
-
+        console.log(cnt);
         // Update pitch tracker
-        if (currentTime % 150 == 0) {
+        if (cnt % 15 == 0) {
             pitch = nextRandomPitch(pitch);
+            cnt = 0;
         }
+        cnt = cnt + 1;
         context.fillStyle = "blue";
         context.fillRect(LEFT_PAD, TOP_PAD, PITCH_WIDTH, PITCH_HEIGHT);
 
@@ -330,11 +331,12 @@ $(function(){
                 drawWord(start, end, lyrics[i].word, lyrics[i].pitch);
         }
 
-        currentTime += FEEDBACK_MS;
+        currentTime = currentTime + FEEDBACK_MS;
+        if (Math.abs(player.position - currentTime) < FEEDBACK_MS)
+            currentTime = player.position;
     }
 
     function drawWord(start, end, word, pitch) {
-        console.log("Drawing word!");
         context.fillStyle = "#e8e8e8";
         context.beginPath();
         var lx = LEFT_PAD + (start - currentTime) * LYRICS_WIDTH / LYRICS_LENGTH;
