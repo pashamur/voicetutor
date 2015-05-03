@@ -11,17 +11,18 @@
 <script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
 <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
 <script src="../vendor/typeahead.js"></script>
+<script src="../vendor/fuse.js"></script>
 
 <script>
 $(function(){
   $("#search-text").keypress(function(e){
     if(e.keyCode == 13){
-      $("#search-results").show();
+      search($('#search-text').val());
     }
   });
 
   $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
-    $("#search-results").show();
+    search($('#search-text').val());
   });    
 
 
@@ -52,8 +53,13 @@ $(function(){
     };
   };
    
+  Songs = [];
+
   $.get('text/songs.txt', function(data) {
-    states = data.split('\n');
+    songs = data.split('\n');
+    for(i = 0; i<songs.length; i++){
+      Songs.push({id: i, title: songs[i].split(' - ')[0], artist: songs[i].split(' - ')[1]});
+    }
     setup_typeahead();
   });
 
@@ -65,10 +71,32 @@ $(function(){
       minLength: 0
     },
     {
-      name: 'states',
-      source: substringMatcher(states)
+      name: 'songs',
+      source: substringMatcher(songs)
     });
 
+  };
+
+  var options = {
+    keys: ['artist', 'title'],   // keys to search in
+    maxPatternLength: 200
+  }
+
+  f = new Fuse(Songs, options);
+
+  search = function(query){
+    results = f.search(query)
+
+    $('#search-results').html('');
+
+    for(i = 0; i<results.length; i++){
+      console.log(results[i]);
+      var search_result = $('<a>').attr('href', 'karaoke.html').attr('class', 'list-group-item').text(results[i].title + " - " + results[i].artist);
+      console.log(search_result);
+      $('#search-results').append(search_result);
+    }
+
+    $('#search-results').show();
   };
 
 });
