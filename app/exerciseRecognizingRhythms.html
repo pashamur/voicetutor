@@ -22,8 +22,8 @@ playOrder = ["aaba", "abab", "aaaa", "aaab", "abaa"]
 
 var hasFailed = false; //whether or not they get an interval right on the first guess
 var justSucceeded = false; //if they just clicked correctly we know to clean the board after
-thingsRight = playOrder;
-thingsWrong = [];
+thingsRight = [];
+thingsWrong = ["aaba", "abab", "aaaa", "aaab", "abaa"];
 
 
 $(function(){
@@ -31,91 +31,101 @@ $(function(){
 
 
     var dialog = document.getElementById('window');
-
 //this is shitty lol sorry
-var table = document.getElementById("intervals");
-table.rows(0).cells(0).onClick = function() {
-  if ((arraySpot = 0) || (arraySpot = 3)){ //THEY GUESSED CORRECTLY!!
+$("#first").click(function(){
+  console.log("clicked it")
+  if ((arraySpot == 0) || (arraySpot == 3)){ //THEY GUESSED CORRECTLY!!
     points++;
+    thingsRight.push(playOrder[arraySpot]);
+    console.log("Just added: " + playOrder[arraySpot])
+    thingsWrong.splice(thingsWrong.indexOf(playOrder[arraySpot]), 1);
   }
+  $("#score").text("Score: " + points + "/5");
   playNextSound()
-  //redo the tables
-}
-table.rows(0).cells(1).onClick = function() {
-  if ((arraySpot = 2) || (arraySpot = 4)){ //THEY GUESSED CORRECTLY!!
+  tableShuffle()
+}) 
+$("#second").click(function() {
+  if ((arraySpot == 2) || (arraySpot == 4)){ //THEY GUESSED CORRECTLY!!
     points++;
+    thingsRight.push(playOrder[arraySpot]);
+    console.log("Just added: " + playOrder[arraySpot])
+    thingsWrong.splice(thingsWrong.indexOf(playOrder[arraySpot]), 1);
   }
+  $("#score").text("Score: " + points + "/5");
   playNextSound()
-  //redo the tables
-}
-table.rows(1).cells(0).onClick = function() {
-  if (arraySpot = 1){ //THEY GUESSED CORRECTLY!!
+  tableShuffle()
+})
+$("#third").click(function() {
+  if (arraySpot == 1){ //THEY GUESSED CORRECTLY!!
     points++;
+    thingsRight.push(playOrder[arraySpot]);
+    console.log("Just added: " + playOrder[arraySpot])
+    thingsWrong.splice(thingsWrong.indexOf(playOrder[arraySpot]), 1);
   }
+  $("#score").text("Score: " + points + "/5");
   playNextSound()
-  //redo the tables
-}
-table.rows(1).cells(1).onClick = function() {
-
+  tableShuffle()
+})
+$("#fourth").click(function() {
+  $("#score").text("Score: " + points + "/5");
   playNextSound()
-  //redo the tables
-}
+  tableShuffle()
+})
 
 
 //this is a terrible 4:30am idea. please forgive me. 
 function tableShuffle(){
-  if (arraySpot = 1) {
-
+  console.log("Currenty arraySpot: " + arraySpot)
+  var first = document.getElementById("first");
+  var second = document.getElementById("second");
+  var third = document.getElementById("third");
+  var fourth = document.getElementById("fourth");
+  if (arraySpot == 1) {
+    first.src = "images/rhythms/aaaa.png"
+    second.src = "images/rhythms/aaba.png"
+    third.src = "images/rhythms/abab.png"
+    fourth.src = "images/rhythms/aaab.png"
   } else if (arraySpot == 2) {
-
+    first.src = "images/rhythms/aaba.png"
+    second.src = "images/rhythms/aaaa.png"
+    third.src = "images/rhythms/abab.png"
+    fourth.src = "images/rhythms/abaa.png"
   } else if (arraySpot == 3) {
-
+    first.src = "images/rhythms/aaab.png"
+    second.src = "images/rhythms/aaaa.png"
+    third.src = "images/rhythms/abbb.png"
+    fourth.src = "images/rhythms/abaa.png"
   } else if (arraySpot == 4) {
-
+    first.src = "images/rhythms/aaab.png"
+    second.src = "images/rhythms/abaa.png"
+    third.src = "images/rhythms/abab.png"
+    fourth.src = "images/rhythms/aaaa.png"
+  } else if (arraySpot == 5) {
+    first.src = "images/rhythms/aaab.png"
+    second.src = "images/rhythms/abaa.png"
+    third.src = "images/rhythms/abab.png"
+    fourth.src = "images/rhythms/aaaa.png"
   } 
 
 }
 
-//probably not going to do onclick the same way I did the first guy
-//setting up the onClick listeners
-var table = document.getElementById("intervals");
- for (var i = 0; i < table.rows.length; i++) {
-        for (var j = 0; j < table.rows[i].cells.length; j++)
-        table.rows[i].cells[j].onclick = function () {
-            rhythmGame(this);
-        };
-    }
-
-playNextSound();
-
-function rhythmGame(cell) {
-  if(justSucceeded)
-    whitenCells()
+//straight from here: http://www.srccodes.com/p/article/40/determine-click-position-row-column-number-onclick-table-cell
 
 
-  if (intervalPlaying == cell.innerHTML) { //they guessed correctly
+function playNextSound() {
+    arraySpot++;
+    console.log(playOrder)
+    console.log(arraySpot)
 
-    justSucceeded = true;
-    greenAnimate(cell.innerHTML);
-    if (!hasFailed)
-      points++;
-    $("#score").text("Score: " + points + "/5");
-    playNextSound();
-    hasFailed = false;
-
-  } else {  //they guessed incorreclty
-    hasFailed = true;
-    justSucceeded = false;
-    redAnimate(cell.innerHTML);
-
-    index = thingsRight.indexOf(intervalPlaying)//get the interval they were supposed to get
-    thingsRight.splice(index, 1);
-    thingsWrong.push(intervalPlaying)
-  };
-}
+    $("#note").attr("src",soundOrder[arraySpot]).trigger("play");
+    intervalPlaying = playOrder[arraySpot]
 
 
-
+  if (arraySpot == soundOrder.length){ //we are out of music to play! game's over
+    $("#gucci").html("Intervals you got correct: " + thingsRight)
+    $("#notgucci").html("Intervals you got incorrect: " + thingsWrong)
+    dialog.show()
+  }
 
 
 
@@ -133,19 +143,7 @@ function whitenCells() {
   }
 }
 
-//straight from here: http://www.srccodes.com/p/article/40/determine-click-position-row-column-number-onclick-table-cell
 
-
-function playNextSound() {
-    $("#note").attr("src",soundOrder[arraySpot]).trigger("play");
-    intervalPlaying = playOrder[arraySpot]
-    arraySpot++;
-
-  if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
-    $("#gucci").html("Intervals you got correct: " + thingsRight)
-    $("#notgucci").html("Intervals you got incorrect: " + thingsWrong)
-    dialog.show()
-  }
 
 
 }
@@ -234,19 +232,19 @@ onTableClick{
   
   <table id="intervals" border="1" style="border-collapse: collapse; cursor: pointer; margin-left:auto; margin-right: auto" cellpadding="8" > 
     <tr>
-      <td id="first" class="rhythmButton">
-          <img src="images/rhythms/aaba.png" height="50%">
+      <td  class="rhythmButton">
+          <img id="first" src="images/rhythms/aaba.png" height="50%">
       </td>
-      <td id="second" class="rhythmButton">
-          <img src="images/rhythms/aaaa.png" height="50%">
+      <td  class="rhythmButton">
+          <img id="second" src="images/rhythms/aaaa.png" height="50%">
       </td>
     </tr>
     <tr>
-      <td id="third" class="rhythmButton"> 
-          <img src="images/rhythms/abab.png" height="50%">
+      <td  class="rhythmButton"> 
+          <img id="third" src="images/rhythms/abab.png" height="50%">
       </td>
-      <td id="fourth" class="rhythmButton">
-          <img src="images/rhythms/abaa.png" height="50%">
+      <td  class="rhythmButton">
+          <img id="fourth" src="images/rhythms/abaa.png" height="50%">
       </td>
     </tr>
   </table>  
@@ -285,7 +283,7 @@ onTableClick{
 
 
   <audio id="note" autoplay = "autoplay"> <!-- put the value  autoplay = "autoplay" to play the sound.-->
-    <source src="sounds/D293.mp3" type="audio/mpeg">
+    <source src="sounds/rhythms/aaba.mp3" type="audio/mpeg">
   </audio>
 
 
