@@ -29,7 +29,7 @@ $(function(){
   var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
       if(q==''){
-        return cb(['Haddaway - What is Love', 'Taylor Swift - Fifteen', 'Hozier - Take Me To Church']);
+        return cb(['What is Love - Haddaway', 'Fifteen - Taylor Swift', 'Take Me To Church - Hozier']);
       }
 
       var matches, substringRegex;
@@ -52,19 +52,24 @@ $(function(){
     };
   };
    
-  var states = ['Haddaway - What is Love', 'Taylor Swift - Fifteen', 'Hozier - Take Me To Church'];
-   
-  $('#search-text').typeahead({
-    hint: true,
-    highlight: true,
-    minLength: 0
-  },
-  {
-    name: 'states',
-    source: substringMatcher(states)
+  $.get('text/songs.txt', function(data) {
+    states = data.split('\n');
+    setup_typeahead();
   });
 
+  setup_typeahead = function(){
+     
+    $('#search-text').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 0
+    },
+    {
+      name: 'states',
+      source: substringMatcher(states)
+    });
 
+  };
 
 });
 </script>
