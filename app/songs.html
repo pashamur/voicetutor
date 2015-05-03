@@ -19,9 +19,11 @@ $(function(){
       $("#search-results").show();
     }
   });
-  $("#search-button").click(function(){
+
+  $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
     $("#search-results").show();
-  });
+  });    
+
 
 
   var substringMatcher = function(strs) {
@@ -50,7 +52,7 @@ $(function(){
     };
   };
    
-  var states = ['Taylor Swift', 'Justin Bieber'];
+  var states = ['Haddaway - What is Love', 'Taylor Swift - Fifteen', 'Hozier - Take Me To Church'];
    
   $('#search-text').typeahead({
     hint: true,
@@ -107,7 +109,9 @@ $(function(){
     <div class='col-xs-12'>
       <h1 class="text-center">Select a song</h1>
       <div class="input-group" style="padding-left: 20px; padding-right: 20px;">
-        <input id='search-text' type="text" class="typeahead form-control" placeholder="Name of the songs, singers, bands...">
+        <form id='search-form'>
+          <input id='search-text' type="text" class="typeahead form-control" placeholder="Name of the songs, singers, bands...">
+        </form>
       </div><!-- /input-group -->
       <div id='search-results' class='list-group' style='display: none;'>
         <a href="karaoke.html" class="list-group-item">Haddaway - What is love <div style='float:right;'>04:31</div></a>
