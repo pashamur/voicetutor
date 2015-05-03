@@ -15,8 +15,11 @@
 
 var intervalPlaying = "";
 var arraySpot = 0;
-soundOrder = ["sounds/B3.mp3", "sounds/A440.mp3"];
-playOrder = ["fifth", "third", "seventh", "second", "sixth"]
+var points = 0;
+soundOrder = ["sounds/fifth.mp3", "sounds/third.mp3","sounds/seventh.mp3","sounds/second.mp3","sounds/sixth.mp3"];
+playOrder = ["Fifth", "Third", "Seventh", "Second", "Sixth"]
+var hasFailed = false; //whether or not they get an interval right on the first guess
+var justSucceeded = false; //if they just clicked correctly we know to clean the board after
 
 
 
@@ -25,68 +28,59 @@ $(function(){
 
 
     var dialog = document.getElementById('window');
-    // document.getElementById('retry').onclick = function() {
-    //     dialog.close();
-    // };
-    // document.getElementById('exercises').onclick = function() {
-    //     dialog.close();
-    // };
 
+//setting up the onClick listeners
+var table = document.getElementById("intervals");
+ for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++)
+        table.rows[i].cells[j].onclick = function () {
+            intervalGame(this);
+        };
+    }
+playNextSound();
 
-
-//http://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.text("Time: " + minutes + ":" + seconds);
-
-        if (timer > 1) {
-            --timer;
-            //timer = duration;
-        } else {
-          dialog.show()
-          $("#note").attr("src","").trigger("play");
-        }
-    }, 1000);
+function intervalGame(cell) {
+  if(justSucceeded)
+    whitenCells()
+  if (intervalPlaying == cell.innerHTML) {
+    justSucceeded = true;
+    greenAnimate(cell.innerHTML);
+    if (!hasFailed)
+      points++;
+    $("#score").text("Score: " + points + "/5");
+    playNextSound();
+    hasFailed = false;
+  } else {
+    hasFailed = true;
+    justSucceeded = false;
+    redAnimate(cell.innerHTML);
+  };
 }
 
-
-
-
-jQuery(function ($) {
-    var duration = 15,
-        display = $('#time');
-    startTimer(duration, display);
-    //animateSequence();
-
-});
-
-function intervalGame() {
-  playNextSound();
+function greenAnimate(cell) {
+  document.getElementById(cell).style.color = "green";
+}
+function redAnimate(cell) {
+  document.getElementById(cell).style.color = "red";
+}
+function whitenCells() {
+  for (var i = 0; i < table.rows.length; i++) {
+    for (var j = 0; j < table.rows[i].cells.length; j++){
+      table.rows[i].cells[j].style.color = "black";
+    }
+  }
 }
 
 //straight from here: http://www.srccodes.com/p/article/40/determine-click-position-row-column-number-onclick-table-cell
-$("#intervals").click(function() {     
-        var column_num = parseInt( $(this).index() ) + 1;
-        var row_num = parseInt( $(this).parent().index() )+1;    
-        console.log("Column_num: " + column_num)
-        console.log("Row_num: " + row_num)
-    });
+
 
 function playNextSound() {
-
-  if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
-    dialog.show()
-  } else {
     $("#note").attr("src",soundOrder[arraySpot]).trigger("play");
     intervalPlaying = playOrder[arraySpot]
     arraySpot++;
+
+  if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
+    dialog.show()
   }
 
 
@@ -108,15 +102,13 @@ onTableClick{
 
 
 
-    function setupBars() {
-        // generate random scores
-        var scores = 67;
-        
+    function setupBars() {        
         var width = $('.score_bar_container').width();
         // update display
-
-            $('#score_bar_1').html("67%");
-            $('#score_bar_1').animate({width: Math.round(67 * 900 / 100)+"px"}, 1000); //scores*width/100 this should be what I'm using
+        var percent = score / 5 * 100 // where 5 is the max score attainable
+        $('#score_bar_1').html(percent);
+        $('#score_bar_1').animate({width: Math.round(percent*width/100)+"px"}, 1000); //scores*width/100 this should be what I'm using
+            //$('#score_bar_'+(i+1)).animate({width: Math.round(scores[i]*width/100)+"px"}, 1000);
     }
     
     // run setup stuff
@@ -169,31 +161,31 @@ onTableClick{
 
   <div class="row" style='margin-bottom: 30px;'>
     <h1 style='text-align:center'> Choose the Interval </h1>
-    <h3 style ='text-align:center'> Please listen to the two notes provided by the computer. </h3>
-    <h3 style ='text-align:center'> You have five seconds to choose the correct interval being played.</h3>
+    <h3 style ='text-align:center'> Please listen to the two notes provided by the computer and select the correct note being played. </h3>
+    <h3 style ='text-align:center'> You will earn points if you guess an interval correctly on your first try. </h3>
   </div>
 
 
   <!-- <div class="row" style="background-image: url('images/abcdefg.png'); background-repeat: no-repeat; height: 55px; width: 600px; margin-left:auto; margin-right: auto"> </div> -->
   
-  <table id="intervals" style="width: 600px; height: 55px; margin-left:auto; margin-right: auto"> 
+  <table id="intervals" border="1" style="border-collapse: collapse; cursor: pointer; margin-left:auto; margin-right: auto" cellpadding="8" > 
     <tr>
-      <td id="unison" class="intervalButton"> Unison </td>
-      <td id="second" class="intervalButton"> Second </td>
-      <td id="third" class="intervalButton"> Third </td>
-      <td id="fourth" class="intervalButton"> Fourth </td>
+      <td id="Unison" class="intervalButton">Unison</td>
+      <td id="Second" class="intervalButton">Second</td>
+      <td id="Third" class="intervalButton">Third</td>
+      <td id="Fourth" class="intervalButton">Fourth</td>
     </tr>
     <tr>
-      <td id="fifth" class="intervalButton"> Fifth </td>
-      <td id="sixth" class="intervalButton"> Sixth </td>
-      <td id="seventh" class="intervalButton"> Seventh </td>
+      <td id="Fifth" class="intervalButton">Fifth</td>
+      <td id="Sixth" class="intervalButton">Sixth</td>
+      <td id="Seventh" class="intervalButton">Seventh</td>
     </tr>
   </table>  
 
 
-  <div id = "time" style="float:right; margin-top: 50px">
-      Time:
-  </div>
+   <div id = "score" style="float:right; margin-top: 50px">
+      Score: 0/5
+  </div> 
 
 
 
