@@ -83,6 +83,33 @@
 	bottom: 2px;
 }
 
+#recording-signal {
+	font-size: 12px;
+	text-align: right;
+	display: none;
+}
+
+#recording-icon {
+	display: inline-block;
+	background: #f00;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    text-align: right;
+}
+
 .stop-icon {
 	background-image: url("images/buttons/stop.png");
+}
+
+#feedback_box {
+	text-align: center;
+	width: 100%;
+	border: 2px solid #e8e8e8;
+}
+
+#feedback {
+	padding: 0;
+	margin: auto;
+	display: inline;
 }
