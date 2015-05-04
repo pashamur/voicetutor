@@ -135,8 +135,11 @@ function playNextSound() {
   if (arraySpot == soundOrder.length){ //we are out of music to play! game's over
     $("#gucci").html("Intervals you got correct: " + thingsRight);
     $("#notgucci").html("Intervals you got incorrect: " + thingsWrong);
+    $('#window').on('shown.bs.modal', function (e) {
+        setupBars();
+    });
     dialog.modal('show');
-    setupBars();
+    //setupBars();
   }
 
 
@@ -177,7 +180,8 @@ onTableClick{
     function setupBars() {        
         var width = $('.score_bar_container').width();
         var percent = points / 5 * 100 // where 5 is the max score attainable
-        console.log("percent: " + percent)
+        console.log(width);
+        console.log("percent: " + percent);
         $('#score_bar_1').html(percent + "%");
         $('#score_bar_1').animate({width: Math.round(percent*width/100)+"px"}, 1000); //scores*width/100 this should be what I'm using
     }
@@ -269,7 +273,7 @@ onTableClick{
 
 
 
-<div id="window" class="modal fade">
+<div id="window" class="modal fade" style="width: 100%;">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">

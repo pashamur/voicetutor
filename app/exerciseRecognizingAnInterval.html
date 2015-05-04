@@ -103,7 +103,9 @@ function playNextSound() {
   if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
     $("#gucci").html("Intervals you got correct: " + thingsRight);
     $("#notgucci").html("Intervals you got incorrect: " + thingsWrong);
-    setupBars();
+    $('#window').on('shown.bs.modal', function (e) {
+        setupBars();
+    });
     dialog.modal('show');
   }
 
@@ -217,7 +219,7 @@ onTableClick{
 
 
 
-<div id="window" class="modal fade">
+<div id="window" class="modal fade" style="width: 100%">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
