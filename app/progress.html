@@ -20,35 +20,43 @@
 
   <body>
     <!-- start navbar -->
-    <nav id="navigation" class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">Singing Simply</a>
-        </div>
+  <nav id="navigation" class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Singing Simply</a>
+      </div>
 
-        <ul class="nav navbar-nav">
-          <li><a href="start.html">Getting started</a></li>
-          <li><a href="exercises.html">Exercises</a></li>
-          <li><a href="songs.html">Songs</a></li>
-          <li class='active'><a href="progress.html">My Progress</a></li>
-        </ul>
+      <ul class="nav navbar-nav">
+        <li><a href="start.html">Getting started</a></li>
+        <li class="dropdown">
+          <li class="dropdown"><a href="exercises.html">Exercises<b class="caret"></b></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="exerciseRecognizingAnInterval.html">Recognizing Intervals</a></li>
+            <li><a href="exerciseRecognizingRhythms.html">Recognizing Rhythm</a></li>
+            <li><a href="exerciseSingingAPitch.html">Singing Pitch</a></li>
+          </ul>
+        </li>
+        <li><a href="songs.html">Songs</a></li>
+        <li class="active"><a href="progress.html">My Progress</a></li>
+      </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Joe Schmoe <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Sign out</a></li>
-            </ul>
-          </li>
-        </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Joe Schmoe <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
       </div><!-- /.navbar-collapse -->
-    </nav>
+    </div>
+  </nav>
     <!-- end navbar -->
     <div class='container'>
       <div class="progress_section" id="exercises_section">

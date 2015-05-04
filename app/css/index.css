@@ -12,7 +12,20 @@ body {
 	font-size: 100%;
 }
 
-#navigation li.active>a {
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#navigation li.active>a{
 	color: #F4654D;
 	background-color: #fff;
 }
