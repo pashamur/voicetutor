@@ -42,7 +42,7 @@ $("#replay").click(function(){
   audioElement.play();
 });
 
-    var dialog = document.getElementById('window');
+    var dialog = $("#window");
 //this is shitty lol sorry
 $("#first").click(function(){
   if ((arraySpot == 0) || (arraySpot == 3)){ //THEY GUESSED CORRECTLY!!
@@ -135,7 +135,7 @@ function playNextSound() {
   if (arraySpot == soundOrder.length){ //we are out of music to play! game's over
     $("#gucci").html("Intervals you got correct: " + thingsRight);
     $("#notgucci").html("Intervals you got incorrect: " + thingsWrong);
-    dialog.show();
+    dialog.modal('show');
     setupBars();
   }
 
@@ -176,11 +176,10 @@ onTableClick{
 
     function setupBars() {        
         var width = $('.score_bar_container').width();
-        // update display
         var percent = points / 5 * 100 // where 5 is the max score attainable
+        console.log("percent: " + percent)
         $('#score_bar_1').html(percent + "%");
         $('#score_bar_1').animate({width: Math.round(percent*width/100)+"px"}, 1000); //scores*width/100 this should be what I'm using
-            //$('#score_bar_'+(i+1)).animate({width: Math.round(scores[i]*width/100)+"px"}, 1000);
     }
     
 
@@ -270,14 +269,17 @@ onTableClick{
 
 
 
-
-<dialog id="window">
-    <h3>Exercise Complete!</h3>
-
-    <div class="score_bar_container">
-      <div id="score_bar_1" class="score_bar"></div>
-    </div>
-    <div id="comments_container">
+<div id="window" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Exercise Complete!</h4>
+          </div>
+          <div class="score_bar_container">
+            <div id="score_bar_1" class="score_bar"></div>
+          </div>
+          <div id="comments_container">
                 <div id="comments_section">
                   <h1>Comments</h1>
                   <ul id="comments_list">
@@ -289,9 +291,10 @@ onTableClick{
                   <a href="exerciseRecognizingRhythms.html"><button>Retry this exercise</button></a>
                   <a href="exercises.html"><button>Back to exercises</button></a>
                 </div>
-              </div>
-    
-</dialog>
+          </div>
+      </div>
+    </div>
+</div>
 
 
 

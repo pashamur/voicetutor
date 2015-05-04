@@ -28,7 +28,7 @@ $(function(){
   $("#navigation").load('partials/navbar.html')
 
 
-    var dialog = document.getElementById('window');
+    var dialog = $("#window");
 
 //setting up the onClick listeners
 var table = document.getElementById("intervals");
@@ -105,7 +105,7 @@ function playNextSound() {
     $("#gucci").html("Intervals you got correct: " + thingsRight);
     $("#notgucci").html("Intervals you got incorrect: " + thingsWrong);
     setupBars();
-    dialog.show();
+    dialog.modal('show');
   }
 
 
@@ -218,12 +218,17 @@ onTableClick{
 
 
 
-<dialog id="window">
-    <h3>Exercise Complete!</h3>
-    <div class="score_bar_container">
-    <div id="score_bar_1" class="score_bar"></div>
-    </div>
-    <div id="comments_container">
+<div id="window" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>Exercise Complete!</h4>
+          </div>
+          <div class="score_bar_container">
+            <div id="score_bar_1" class="score_bar"></div>
+          </div>
+          <div id="comments_container">
                 <div id="comments_section">
                   <h1>Comments</h1>
                   <ul id="comments_list">
@@ -233,11 +238,12 @@ onTableClick{
                 </div>
                 <div id="buttons_section">
                   <a href="exerciseRecognizingAnInterval.html"><button>Retry this exercise</button></a>
-                  <a href="exercises.html"><button>Back to Exercises</button></a>
+                  <a href="exercises.html"><button>Back to exercises</button></a>
                 </div>
-              </div>
-    
-</dialog>
+          </div>
+      </div>
+    </div>
+</div>
 
 
 

@@ -96,8 +96,19 @@ td:active
     vertical-align: top;
 }
 
-/*#score{
-    font-size: 24px;
-    float:right; 
-    margin-top: 50px;
-}*/
+#comments_container{
+    height: 180px;
+}
+
+.audiojs{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+.scrubber{
+    width: calc(100% - 170px) !important;
+}
+
+.modal-dialog {
+    width: 90% !important;
+}

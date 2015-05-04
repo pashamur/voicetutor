@@ -79,3 +79,19 @@
 
 
 
+#comments_container{
+    height: 180px;
+}
+
+.audiojs{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+.scrubber{
+    width: calc(100% - 170px) !important;
+}
+
+.modal-dialog {
+    width: 90% !important;
+}
