@@ -26,7 +26,8 @@ td:active
     margin-left: auto;
 }
 #intervals{
-    border-spacing: 150px;
+    border-spacing: 5px;
+    border-collapse: separate;
     cursor: pointer; 
     margin-left:auto; 
     margin-right: auto
