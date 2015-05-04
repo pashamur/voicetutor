@@ -74,10 +74,8 @@ function morePoints(){
   points++;
   var score = $("#score");
   score.css("color","green");
-  console.log("made it green")
   setTimeout(function(){
     score.css("color","black");
-    console.log("made it black")
   },1500)
 }
 
@@ -104,9 +102,10 @@ function playNextSound() {
     arraySpot++;
 
   if (arraySpot > soundOrder.length){ //we are out of music to play! game's over
-    $("#gucci").html("Intervals you got correct: " + thingsRight)
-    $("#notgucci").html("Intervals you got incorrect: " + thingsWrong)
-    dialog.show()
+    $("#gucci").html("Intervals you got correct: " + thingsRight);
+    $("#notgucci").html("Intervals you got incorrect: " + thingsWrong);
+    setupBars();
+    dialog.show();
   }
 
 
@@ -131,14 +130,13 @@ onTableClick{
     function setupBars() {        
         var width = $('.score_bar_container').width();
         // update display
-        var percent = score / 5 * 100 // where 5 is the max score attainable
-        $('#score_bar_1').html(percent);
+        var percent = points / 5 * 100 // where 5 is the max score attainable
+        $('#score_bar_1').html(percent + "%");
         $('#score_bar_1').animate({width: Math.round(percent*width/100)+"px"}, 1000); //scores*width/100 this should be what I'm using
             //$('#score_bar_'+(i+1)).animate({width: Math.round(scores[i]*width/100)+"px"}, 1000);
     }
     
     // run setup stuff
-    setupBars();
 
 });
 
