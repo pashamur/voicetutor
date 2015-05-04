@@ -1,19 +1,33 @@
 $(function(){
   $("#search-text").keypress(function(e){
     if(e.keyCode == 13){
+      history.pushState({query:$('#search-text').val()}, "search", '?query='+$('#search-text').val());
       search($('#search-text').val());
       $('.typeahead').typeahead('close');
     }
   });
 
   $('.typeahead').bind('typeahead:select', function(ev, suggestion) {
+    history.pushState({query:$('#search-text').val()}, "search", '?query='+$('#search-text').val());
     search($('#search-text').val());
   });    
 
   $('#search-icon').click(function(){
+    history.pushState({query:$('#search-text').val()}, "search", '?query='+$('#search-text').val());
     search($('#search-text').val());
+    $('.typeahead').typeahead('close');
   });
 
+  window.onpopstate = function(event){
+    if(event.state == null){
+      $('#search-text').val('');
+      $('#search-results').hide();
+      return;
+    }
+
+    $('#search-text').val(event.state.query);
+    search(event.state.query);
+  }
 
   var substringMatcher = function(strs) {
     return function findMatches(q, cb) {
@@ -66,6 +80,15 @@ $(function(){
 
     autocomplete_data = titles.concat(uniq(artists));
     setup_typeahead();
+
+    // Reload current state if we've gone back after searching
+    var currentState = history.state;
+
+    if(currentState != null){
+      console.log(currentState);
+      $('#search-text').val(currentState.query);
+      search(currentState.query);
+    }
   });
 
   setup_typeahead = function(){
@@ -115,5 +138,6 @@ $(function(){
   $('body').on('click', '.search-result', function(){
     window.location.href='karaoke.html';
   });
+
 
 });
