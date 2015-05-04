@@ -94,3 +94,9 @@ div.input-group {
 td.album-art {
 	width: 35px;
 }
+
+.search-pagination { 
+	width: 150px;
+	margin: 0 auto;
+	cursor: pointer;
+}

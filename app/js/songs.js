@@ -85,7 +85,6 @@ $(function(){
     var currentState = history.state;
 
     if(currentState != null){
-      console.log(currentState);
       $('#search-text').val(currentState.query);
       search(currentState.query);
     }
@@ -115,12 +114,16 @@ $(function(){
   var source   = $("#search-result-template").html();
   var template = Handlebars.compile(source);
 
-  search = function(query){
-    results = f.search(query);
+  search = function(query, offset){
+    var offset = typeof offset !== 'undefined' ? offset : 0;
+
+    var results = f.search(query);
 
     $('#search-results>tbody').html('');
 
-    for(i = 0; i<results.length; i++){
+    var limit = (results.length > offset + 20) ? offset + 20 : results.length;
+
+    for(i = offset; i<limit; i++){
       var mins = Math.floor((Math.random() * 6) + 2);
       var secs = Math.floor((Math.random() * 49) + 11);
       var length = mins + ":" + secs;
@@ -131,12 +134,40 @@ $(function(){
       $('#search-results>tbody').append(html);
     }
 
+    if(offset > 0){ $("#prevPageLink").show(); } else { $("#prevPageLink").hide(); }
+    if(results.length > offset + 20) { $("#nextPageLink").show(); } else { $("#nextPageLink").hide(); }
+
     $('#search-results').show();
     $('#search-results thead').show();
   };
 
+
   $('body').on('click', '.search-result', function(){
     window.location.href='karaoke.html';
+  });
+
+  $('body').on('click', '#nextPageLink', function(){
+    var currentState = history.state;
+
+    if(currentState != null){
+      var offset = typeof currentState.offset !== 'undefined' ? currentState.offset : 0;
+      var nextOffset = offset + 20;
+
+      history.pushState({query: currentState.query, offset: nextOffset}, "search", '?query='+$('#search-text').val()+"&offset="+nextOffset);
+      search(currentState.query, nextOffset);
+    }  
+  });
+
+  $('body').on('click', '#prevPageLink', function(){
+    var currentState = history.state;
+
+    if(currentState != null){
+      var offset = typeof currentState.offset !== 'undefined' ? currentState.offset : 0;
+      var nextOffset = (offset - 20 < 0) ? 0 : offset - 20;
+
+      history.pushState({query: currentState.query, offset: nextOffset}, "search", '?query='+$('#search-text').val()+"&offset="+nextOffset);
+      search(currentState.query, nextOffset);
+    }
   });
 
 
