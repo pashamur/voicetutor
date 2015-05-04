@@ -75,3 +75,22 @@ div.input-group {
 	z-index: 10; 
 	cursor: pointer;
 }
+
+.list-group-item.search-result{
+	border: none;
+	font-size: 18px;
+	padding: 5px 15px;
+}
+
+.search-result {
+	padding: 5px;
+}
+
+.search-result:hover {
+	background-color: #eee;
+	cursor: pointer;
+}
+
+td.album-art {
+	width: 35px;
+}
