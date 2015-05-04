@@ -46,8 +46,6 @@ $("#replay").click(function(){
 });
 
 function intervalGame(cell) {
-  if(justSucceeded)
-    whitenCells()
 
   if (intervalPlaying == cell.innerHTML) { //they guessed correctly\
 
@@ -60,6 +58,7 @@ function intervalGame(cell) {
       thingsRight.push(intervalPlaying)
     }
     $("#score").text("Score: " + points + "/5");
+    whitenCells();
     playNextSound();
     hasFailed = false;
 
