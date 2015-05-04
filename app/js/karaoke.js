@@ -145,7 +145,7 @@ $(function(){
             } else {   
                 canvasPause();
                 $('#song_modal').modal('show');
-                $('#play-button').html('<span id="play-button-icon" class="glyphicon glyphicon-stop" aria-hidden="true"></span>&nbsp;Start recording');
+                $('#play-button').html('<span id="play-button-icon" class="recording-icon" aria-hidden="true"></span>&nbsp;&nbsp;Start recording!');
             }
         });
         updateControls();
@@ -259,11 +259,22 @@ $(function(){
     // Change format of lyrics time stamp
     // lyrics[i] = {start, end, word}
     function nextRandomPitch(pitch) {
-        var r = Math.floor(Math.random() * TOTAL_PITCH);
+        var r = Math.floor(Math.random() * 100);
+        var step = Math.floor(Math.random() * 3) + 1;
         var nxt = pitch;
-        if (r < nxt) nxt--;
-        else nxt++;
-        if (nxt < 0 || nxt > TOTAL_PITCH - 1)
+        
+        if (nxt < TOTAL_PITCH / 2) {
+            if (r < 35) nxt -= step;
+            else nxt += step;
+        }
+        else {
+            if (r < 35) nxt += step;
+            else nxt -= step;
+        }
+
+        nxt = Math.max(5, Math.min(nxt, TOTAL_PITCH - 5));
+
+        if (nxt < 5 || nxt > TOTAL_PITCH - 5)
             nxt = Math.floor(Math.random() * TOTAL_PITCH);
         return nxt;
     }
@@ -306,19 +317,10 @@ $(function(){
     // animates canvas per FEEDBACK_MS
     function canvasUpdates() {
         context.clearRect(0, 0, width, height);
-        console.log(cnt);
-        // Update pitch tracker
-        if (cnt % 15 == 0) {
-            pitch = nextRandomPitch(pitch);
-            cnt = 0;
-        }
-        cnt = cnt + 1;
-        context.fillStyle = "blue";
-        context.fillRect(LEFT_PAD, TOP_PAD, PITCH_WIDTH, PITCH_HEIGHT);
-
-        context.beginPath();
-        context.arc(LEFT_PAD + PITCH_WIDTH / 2, pitchCoor(pitch), 5, 0, Math.PI * 2, false);
-        context.fill();
+        // Draw background lines
+        context.fillSytle = "rgba(100, 100, 100, 0.5)";
+        for (var i = 0; i < TOTAL_PITCH; i++)
+            context.fillRect(0, i * HPP + TOP_PAD, width, 0.2);
 
         // Update lyrics
         var from = currentTime - (LEFT_PAD/LYRICS_WIDTH) * LYRICS_LENGTH;
@@ -331,13 +333,27 @@ $(function(){
                 drawWord(start, end, lyrics[i].word, lyrics[i].pitch);
         }
 
+        // Update pitch tracker
+        if (cnt % 15 == 0) {
+            pitch = nextRandomPitch(pitch);
+            cnt = 0;
+        }
+        cnt = cnt + 1;
+        context.fillStyle = "blue";
+        context.fillRect(LEFT_PAD, TOP_PAD, PITCH_WIDTH, PITCH_HEIGHT - HPP);
+
+        context.beginPath();
+        context.arc(LEFT_PAD + PITCH_WIDTH / 2, pitchCoor(pitch) + HPP/2, 5, 0, Math.PI * 2, false);
+        context.fill();
+
+        // Update currentTime
         currentTime = currentTime + FEEDBACK_MS;
         if (Math.abs(player.position - currentTime) < FEEDBACK_MS)
             currentTime = player.position;
     }
 
     function drawWord(start, end, word, pitch) {
-        context.fillStyle = "#e8e8e8";
+        context.fillStyle = "#a8a8a8";
         context.beginPath();
         var lx = LEFT_PAD + (start - currentTime) * LYRICS_WIDTH / LYRICS_LENGTH;
         var rx = LEFT_PAD + (end - currentTime) * LYRICS_WIDTH / LYRICS_LENGTH;
@@ -355,10 +371,13 @@ $(function(){
         context.quadraticCurveTo(x+width,y,x+width-radius,y);
         context.lineTo(x+radius,y);
         context.quadraticCurveTo(x,y,x,y+radius);
-        //context.stroke();
-
-
         context.fill();
+
+        context.fillStyle = "#000000";
+        context.font = "10px sans-serif";
+        var textWidth = context.measureText(word).width;
+        context.fillText(word, x + (width - textWidth) / 2, 290);
+
     }
 
     function canvasPause() {

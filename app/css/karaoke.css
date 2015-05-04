@@ -20,7 +20,7 @@
 	color: #8E8CA3;
     color: #555;
     line-height: 24px;
-    font-size: 14pt;
+    font-size: 13pt;
 }
 
 .vcenter {
@@ -89,7 +89,7 @@
 	display: none;
 }
 
-#recording-icon {
+.recording-icon {
 	display: inline-block;
 	background: #f00;
     width: 12px;
