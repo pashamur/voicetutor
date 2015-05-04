@@ -159,11 +159,7 @@ h2 {
 #mainBox:hover{
     background-color: #f5745e;
 }
-#mainBox a:hover{	
-	text-decoration: none;
-}
-
-#mainBox>a {
+a.main-action-link:hover{	
 	text-decoration: none;
 }
 
