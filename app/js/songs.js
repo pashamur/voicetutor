@@ -134,8 +134,9 @@ $(function(){
       $('#search-results>tbody').append(html);
     }
 
-    if(offset > 0){ $("#prevPageLink").show(); } else { $("#prevPageLink").hide(); }
-    if(results.length > offset + 20) { $("#nextPageLink").show(); } else { $("#nextPageLink").hide(); }
+    if(offset > 0 || results.length > offset + 20){ $('.search-pagination').show(); } else { $('.search-pagination').hide(); }
+    if(offset > 0){ $("#prevPageLink").removeClass('disabled-link'); } else { $("#prevPageLink").addClass('disabled-link'); }
+    if(results.length > offset + 20) { $("#nextPageLink").removeClass('disabled-link'); } else { $("#nextPageLink").addClass('disabled-link'); }
 
     $('#search-results').show();
     $('#search-results thead').show();
@@ -147,6 +148,7 @@ $(function(){
   });
 
   $('body').on('click', '#nextPageLink', function(){
+    if($(this).hasClass('disabled-link')) return;
     var currentState = history.state;
 
     if(currentState != null){
@@ -159,6 +161,8 @@ $(function(){
   });
 
   $('body').on('click', '#prevPageLink', function(){
+    if($(this).hasClass('disabled-link')) return;
+
     var currentState = history.state;
 
     if(currentState != null){

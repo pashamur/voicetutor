@@ -100,3 +100,11 @@ td.album-art {
 	margin: 0 auto;
 	cursor: pointer;
 }
+
+.disabled-link {
+	color: #eee;
+}
+.disabled-link:hover{
+	text-decoration: none;
+	color: #eee;
+}
