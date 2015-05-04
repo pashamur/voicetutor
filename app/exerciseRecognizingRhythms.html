@@ -5,7 +5,7 @@
 
 <link rel="stylesheet" href="../vendor/bootstrap3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/exerciseSingingAPitch.css">
+<link rel="stylesheet" href="css/exerciseRecognizingRhythms.css">
 <link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica' rel='stylesheet' type='text/css'>
 
 <script src="../vendor/jquery/jquery-1.11.2.min.js"></script>
@@ -15,7 +15,7 @@
 
 var rhythmPlaying = "";
 var arraySpot = 0; //I use arraySpot to figure out how far in the game the user is. 
-var points = 0;
+var points = 0; //this is how many points the user has, always. 
 soundOrder = ["sounds/rhythms/aaba.mp3", "sounds/rhythms/abab.mp3","sounds/rhythms/aaaa.mp3","sounds/rhythms/aaab.mp3","sounds/rhythms/abaa.mp3"];
 playOrder = ["aaba", "abab", "aaaa", "aaab", "abaa"]
 //playOrder = ["first", "third", "second", "first", "second"]
@@ -25,19 +25,29 @@ var justSucceeded = false; //if they just clicked correctly we know to clean the
 thingsRight = [];
 thingsWrong = ["aaba", "abab", "aaaa", "aaab", "abaa"];
 
-
 $(function(){
   $("#navigation").load('partials/navbar.html')
 
 
+function greenAnimate() {
+  var score = $("#score");
+  score.css("color","green");
+  console.log("made it green")
+  setTimeout(function(){
+    score.css("color","black");
+    console.log("made it black")
+  },1500)
+}
+
     var dialog = document.getElementById('window');
 //this is shitty lol sorry
 $("#first").click(function(){
-  console.log("clicked it")
   if ((arraySpot == 0) || (arraySpot == 3)){ //THEY GUESSED CORRECTLY!!
     points++;
+    greenAnimate();
+
+    //this chunk is all about the end screen.
     thingsRight.push(playOrder[arraySpot]);
-    console.log("Just added: " + playOrder[arraySpot])
     thingsWrong.splice(thingsWrong.indexOf(playOrder[arraySpot]), 1);
   }
   $("#score").text("Score: " + points + "/5");
@@ -47,8 +57,10 @@ $("#first").click(function(){
 $("#second").click(function() {
   if ((arraySpot == 2) || (arraySpot == 4)){ //THEY GUESSED CORRECTLY!!
     points++;
+    greenAnimate();
+
+    //this chunk is all about the end screen.
     thingsRight.push(playOrder[arraySpot]);
-    console.log("Just added: " + playOrder[arraySpot])
     thingsWrong.splice(thingsWrong.indexOf(playOrder[arraySpot]), 1);
   }
   $("#score").text("Score: " + points + "/5");
@@ -58,8 +70,10 @@ $("#second").click(function() {
 $("#third").click(function() {
   if (arraySpot == 1){ //THEY GUESSED CORRECTLY!!
     points++;
+    greenAnimate();
+
+    //this chunk is all about the end screen.
     thingsRight.push(playOrder[arraySpot]);
-    console.log("Just added: " + playOrder[arraySpot])
     thingsWrong.splice(thingsWrong.indexOf(playOrder[arraySpot]), 1);
   }
   $("#score").text("Score: " + points + "/5");
@@ -75,7 +89,6 @@ $("#fourth").click(function() {
 
 //this is a terrible 4:30am idea. please forgive me. 
 function tableShuffle(){
-  console.log("Currenty arraySpot: " + arraySpot)
   var first = document.getElementById("first");
   var second = document.getElementById("second");
   var third = document.getElementById("third");
@@ -110,13 +123,8 @@ function tableShuffle(){
 }
 
 //straight from here: http://www.srccodes.com/p/article/40/determine-click-position-row-column-number-onclick-table-cell
-
-
 function playNextSound() {
     arraySpot++;
-    console.log(playOrder)
-    console.log(arraySpot)
-
     $("#note").attr("src",soundOrder[arraySpot]).trigger("play");
     intervalPlaying = playOrder[arraySpot]
 
@@ -129,9 +137,7 @@ function playNextSound() {
 
 
 
-function greenAnimate(cell) {
-  document.getElementById(cell).style.color = "green";
-}
+
 function redAnimate(cell) {
   document.getElementById(cell).style.color = "red";
 }
@@ -164,7 +170,7 @@ onTableClick{
 */
 
 
-
+/* *********************** WEEEIIIII PLLSS FIIXXX MEEEEE ************************************************************************/
     function setupBars() {        
         var width = $('.score_bar_container').width();
         // update display
@@ -230,27 +236,27 @@ onTableClick{
 
   <!-- <div class="row" style="background-image: url('images/abcdefg.png'); background-repeat: no-repeat; height: 55px; width: 600px; margin-left:auto; margin-right: auto"> </div> -->
   
-  <table id="intervals" border="1" style="border-collapse: collapse; cursor: pointer; margin-left:auto; margin-right: auto" cellpadding="8" > 
+  <table id="intervals" style="cursor: pointer; margin-left:auto; margin-right: auto; border-spacing: 150px"> 
     <tr>
       <td  class="rhythmButton">
-          <img id="first" src="images/rhythms/aaba.png" height="50%">
+          <img id="first" class = "rhythmButton" src="images/rhythms/aaba.png" height="50%">
       </td>
       <td  class="rhythmButton">
-          <img id="second" src="images/rhythms/aaaa.png" height="50%">
+          <img id="second" class = "rhythmButton" src="images/rhythms/aaaa.png" height="50%">
       </td>
     </tr>
     <tr>
       <td  class="rhythmButton"> 
-          <img id="third" src="images/rhythms/abab.png" height="50%">
+          <img id="third" class = "rhythmButton" src="images/rhythms/abab.png" height="50%">
       </td>
       <td  class="rhythmButton">
-          <img id="fourth" src="images/rhythms/abaa.png" height="50%">
+          <img id="fourth" class = "rhythmButton" src="images/rhythms/abaa.png" height="50%">
       </td>
     </tr>
   </table>  
 
 
-   <div id = "score" style="float:right; margin-top: 50px">
+   <div id = "score">
       Score: 0/5
   </div> 
 

@@ -18,3 +18,8 @@ td{
         background: -moz-linear-gradient(top, #057cc0, #249ee4);
         background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#057cc0), to(#249ee4));
     }
+/*#score{
+    font-size: 24px;
+    float:right; 
+    margin-top: 50px;
+}*/

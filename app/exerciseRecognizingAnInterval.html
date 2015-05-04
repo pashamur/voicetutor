@@ -48,7 +48,7 @@ function intervalGame(cell) {
     justSucceeded = true;
     greenAnimate(cell.innerHTML);
     if (!hasFailed)
-      points++;
+      morePoints();
     $("#score").text("Score: " + points + "/5");
     playNextSound();
     hasFailed = false;
@@ -64,8 +64,19 @@ function intervalGame(cell) {
   };
 }
 
+function morePoints(){
+  points++;
+  var score = $("#score");
+  score.css("color","green");
+  console.log("made it green")
+  setTimeout(function(){
+    score.css("color","black");
+    console.log("made it black")
+  },1500)
+}
+
 function greenAnimate(cell) {
-  document.getElementById(cell).style.color = "green";
+  document.getElementById(cell).style.color = "green"; //makes the text box green
 }
 function redAnimate(cell) {
   document.getElementById(cell).style.color = "red";
@@ -192,7 +203,7 @@ onTableClick{
   </table>  
 
 
-   <div id = "score" style="float:right; margin-top: 50px">
+   <div id = "score" style="float:right; margin-top: 50px; font-size:24px">
       Score: 0/5
   </div> 
 
