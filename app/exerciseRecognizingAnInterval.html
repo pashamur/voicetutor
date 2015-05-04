@@ -20,8 +20,8 @@ soundOrder = ["sounds/fifth.mp3", "sounds/third.mp3","sounds/seventh.mp3","sound
 playOrder = ["Fifth", "Third", "Seventh", "Second", "Sixth"]
 var hasFailed = false; //whether or not they get an interval right on the first guess
 var justSucceeded = false; //if they just clicked correctly we know to clean the board after
-thingsRight = ["Fifth", "Third", "Seventh", "Second", "Sixth"];
-thingsWrong = [];
+thingsRight = [];
+thingsWrong = ["Fifth", "Third", "Seventh", "Second", "Sixth"];
 
 
 $(function(){
@@ -48,12 +48,17 @@ $("#replay").click(function(){
 function intervalGame(cell) {
   if(justSucceeded)
     whitenCells()
-  if (intervalPlaying == cell.innerHTML) { //they guessed correctly
+
+  if (intervalPlaying == cell.innerHTML) { //they guessed correctly\
 
     justSucceeded = true;
     greenAnimate(cell.innerHTML);
-    if (!hasFailed)
+    if (!hasFailed){
       morePoints();
+      index = thingsWrong.indexOf(intervalPlaying)//get the interval they were supposed to get
+      thingsWrong.splice(index, 1);
+      thingsRight.push(intervalPlaying)
+    }
     $("#score").text("Score: " + points + "/5");
     playNextSound();
     hasFailed = false;
@@ -62,10 +67,6 @@ function intervalGame(cell) {
     hasFailed = true;
     justSucceeded = false;
     redAnimate(cell.innerHTML);
-
-    index = thingsRight.indexOf(intervalPlaying)//get the interval they were supposed to get
-    thingsRight.splice(index, 1);
-    thingsWrong.push(intervalPlaying)
   };
 }
 
