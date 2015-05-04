@@ -40,6 +40,11 @@ var table = document.getElementById("intervals");
     }
 playNextSound();
 
+$("#replay").click(function(){
+  var audioElement = document.getElementById("note");
+  audioElement.play();
+});
+
 function intervalGame(cell) {
   if(justSucceeded)
     whitenCells()
@@ -209,7 +214,7 @@ onTableClick{
     </tr>
   </table>  
 
-
+   <button id="replay"> Replay </button>
    <div id = "score" style="float:right; margin-top: 50px; font-size:24px">
       Score: 0/5
   </div> 
