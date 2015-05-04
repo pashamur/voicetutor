@@ -52,6 +52,9 @@ body {
 	letter-spacing: 1px;
 	color: white;
 }
+.started-heading:hover{
+	text-decoration: none;
+}
 
 .well {
 	background-color: #fff;
@@ -155,6 +158,9 @@ h2 {
 
 #mainBox:hover{
     background-color: #f5745e;
+}
+#mainBox a:hover{	
+	text-decoration: none;
 }
 
 #mainBox>a {
