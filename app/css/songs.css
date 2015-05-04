@@ -1,5 +1,6 @@
 #search-results {
 	width: 800px;
+	min-height: 200px;
 	margin: 20px auto;
 }
 
@@ -59,4 +60,18 @@ div.input-group {
 	cursor: pointer;
 	color: #fff;
 	background-color: #0097cf;
+}
+
+.tt-hint {
+	color: #aaa;
+}
+
+#search-icon {
+	font-size: 36px; 
+	color: #999; 
+	position: absolute; 
+	top: 8px; 
+	right: 5px; 
+	z-index: 10; 
+	cursor: pointer;
 }

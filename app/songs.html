@@ -12,6 +12,15 @@
 <script src="../vendor/bootstrap3.3.4/js/bootstrap.min.js"></script>
 <script src="../vendor/typeahead.js"></script>
 <script src="../vendor/fuse.js"></script>
+<script src="../vendor/handlebars-v3.0.3.js"></script>
+
+<script id="search-result-template" type="text/x-handlebars-template">
+  <a href='karaoke.html' class='list-group-item'>
+    <img src='images/person.gif' style='height: 20px; width: 20px;'></img>
+    {{title}} - {{artist}}
+    <div style='float:right'>{{length}}</div>
+  </a>
+</script>
 
 <script>
 $(function(){
@@ -26,6 +35,9 @@ $(function(){
     search($('#search-text').val());
   });    
 
+  $('#search-icon').click(function(){
+    search($('#search-text').val());
+  });
 
 
   var substringMatcher = function(strs) {
@@ -102,19 +114,24 @@ $(function(){
 
   f = new Fuse(Songs, options);
 
+  var source   = $("#search-result-template").html();
+  var template = Handlebars.compile(source);
+
   search = function(query){
-    results = f.search(query)
+    results = f.search(query);
+    console.log('found');
 
     $('#search-results').html('');
 
     for(i = 0; i<results.length; i++){
-      var search_result = $('<a>').attr('href', 'karaoke.html').attr('class', 'list-group-item').text(results[i].title + " - " + results[i].artist);
-
       var mins = Math.floor((Math.random() * 6) + 2);
       var secs = Math.floor((Math.random() * 49) + 11);
-      search_result.append($('<div>').attr('style','float:right').text(mins + ":" + secs));
+      var length = mins + ":" + secs;
 
-      $('#search-results').append(search_result);
+      var context = {title: results[i].title, artist: results[i].artist, length: length};
+      var html    = template(context);
+
+      $('#search-results').append(html);
     }
 
     $('#search-results').show();
@@ -163,11 +180,12 @@ $(function(){
     <div class='col-xs-12'>
       <h1 class="text-center">Select a song</h1>
       <div class="input-group" style="padding-left: 20px; padding-right: 20px;">
-        <form id='search-form'>
+        <form id='search-form' style='position: relative;'>
           <input id='search-text' type="text" class="typeahead form-control" placeholder="Name of the songs, singers, bands...">
+          <span id='search-icon' class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </form>
       </div><!-- /input-group -->
-      <div id='search-results' class='list-group' style='display: none;'>
+      <div id='search-results' class='list-group'>
       </div>
     </div>
   </div>
