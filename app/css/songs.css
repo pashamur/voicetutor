@@ -87,12 +87,18 @@ div.input-group {
 }
 
 .search-result:hover {
-	background-color: #eee;
+	background-color: #FEF0ED;
 	cursor: pointer;
 }
 
 td.album-art {
 	width: 35px;
+}
+td.song-name {
+	width: 400px;
+}
+td.song-artist {
+	width: 300px;
 }
 
 .search-pagination { 

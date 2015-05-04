@@ -19,9 +19,9 @@
       <td class='album-art'>
         <img src='images/{{source}}' style='height: 25px; width: 25px;'></img>
       </td>
-      <td>{{title}}</td>
-      <td>{{artist}}</td>
-      <td>{{length}}</td>
+      <td class='song-name'>{{title}}</td>
+      <td class='song-artist'>{{artist}}</td>
+      <td class='song-length'>{{length}}</td>
   </tr>
 </script>
 
@@ -79,7 +79,7 @@
           <span id='search-icon' class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </form>
       </div><!-- /input-group -->
-      <table id='search-results' class='table table-hover table-condensed'>
+      <table id='search-results' class='table table-condensed'>
         <thead style='display: none;'><tr><th>&nbsp;</th><th>Song Name</th><th>Artist</th><th>Length</th></thead>
         <tbody></tbody>
       </table>

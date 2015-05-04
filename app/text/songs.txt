@@ -148,10 +148,10 @@ Smooth - Santana / R. Thomas
 Can't Take My Eyes Off Of You - Lauryn Hill
 The Cup Of Life - Ricky Martin
 Waiting For Tonight - Jennifer Lopez
-Angel Of Mine- Monica
+Angel Of Mine - Monica
 Crazy - Britney Spears
-Someday- Sugar Ray
-My Love Is Your Love- Whitney Houston
+Someday - Sugar Ray
+My Love Is Your Love - Whitney Houston
 Miami - Will Smith
 The Hardest Thing - 98 Degrees
 Luv Me, Luv Me - Shaggy / Janet
@@ -231,7 +231,7 @@ Can't Hold Us feat. Ray Dalton - Macklemore & Ryan Lewis
 Radioactive - Imagine Dragons
 Mirrors - Justin Timberlake
 Stay - Rihanna
-When I Was Your Man feat. Mikky Ekko Bruno Mars
+When I Was Your Man - Bruno Mars feat. Mikky Ekko
 I Knew You Were Trouble. - Taylor Swift
 Roar - Katy Perry
 Royals - Lorde
@@ -296,7 +296,7 @@ Lego House - Ed Sheeran
 Here's To Never Growing Up - Avril Lavigne
 Kiss You - One Direction
 Counting Stars - OneRepublic
-Still Into You Paramore
+Still Into You - Paramore
 Brave - Sara Bareilles
 Sweater Weather - The Neighbourhood
 Let Her Go - Passenger
