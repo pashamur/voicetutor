@@ -119,7 +119,7 @@ $(function(){
                 types: {
                     data1: 'step',
                 }
-            }, 
+            },
             axis:{
                 x: {
                     tick: {
@@ -131,7 +131,7 @@ $(function(){
                 pattern: ['#8E8CA3']
             },
             legend: {
-                position: 'inset'
+                hide: true
             },
             interaction: {
                 enabled: false
