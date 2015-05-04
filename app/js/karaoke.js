@@ -92,11 +92,13 @@ $(function(){
     var lastPosition = 0;
     var isSongSetup = false;
     var isRecording = false;
+    var score = 60;
 
     function updateScoreBar() {
-    	var score = Math.floor((Math.random() * 20) + 60);
+    	var change = Math.floor((Math.random() * 5) - 2);
     	var up = Math.floor((Math.random() * 6) + 1);
     	if (up == 1) {
+            score += change;
     		$('.progress-bar').css('width', score+'%').attr('aria-valuenow', score);
     		$('#score').html(score + "%");
     	}
